@@ -1,6 +1,7 @@
 # “A food ordering experience for a single restaurant.”
 
-## Requirements:
+
+## Project Requirements:
 
 - clients can visit the restaurant’s website and browse a menu of dishes (`no login`)
 
@@ -29,8 +30,6 @@
 - client receive a notification via SMS when their order is ready
            
 
-
-
 ## Possible Stretch:
 
 nice to have 
@@ -39,3 +38,4 @@ nice to have
 - clients can log in to an account to pay for their order
 - clients can rate the dish
 - clients can rate their transaction
+
