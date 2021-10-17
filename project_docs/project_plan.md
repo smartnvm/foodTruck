@@ -2,43 +2,51 @@
 
 # [PROJECT PLAN]
 
-## Day 1: Project planning
+## Day 1: Project Planning
   [x] User story (HL)
   [x] Wireframe (Mays)
-  [x] Web app flow (AJ)
-  [x] views mock-up (AJ)
-  [x] ERD (Mays)
-      - menu_dishes
-      - orders
   [x] SPA vs `MPA`
     - decided on a multi page approach with SPA *behaviour*
       - one for customer order (one desktop/one mobile)
       - one page for restaurant owner (dashboard like with order# and time placed)
 
-## Day 2: Tasks Definition 
-  [] Front End
-    [] skeleton template for web-app views
-    [] order page
-    []
-    [] Restaurant views
-  [] Routes
-    [] Customers views
-    [] Restaurant views
-  [] Routes
-    [] Customers views
-    [] Restaurant views
+## Day 2: Project Planning 
+  [x] Web app flow (AJ)
+  [x] views mock-up (AJ)
+  [x] ERD (Mays)
+      - menu_dishes
+      - orders    
 
-## Day 3: 
+## Day 3: Sunday
+  [] AJ skeleton HTML for all pages
+    [] landing page
+    [] cusomer view
+    [] owner view
+  [] backend route endpoints
+    [] use dummy data in-memory objects
+
+  [] client.js 
+  [] hasan will take care of `createOrder`   
+      [] hasan will take care of `renderOrders` 
+    
+  [] mays will take care of `createItem` 
+    [] mays will take care of `renderItems`
+  [] mays will take care of `creatLineItem` 
+    [] mays will take care of `renderItems`
+  
+
+## Day 4 Monday
   []
 
-## Day 4
+## Day 5 Tuesday
   []
 
-## Day 5
+## Day 6 Wednsday 
   []
 
-## Day 6
-  []
+## Day 7 Thursday
+
+
 
 
 # Web-app Front End Structure
@@ -75,52 +83,20 @@
 
 ## Views
 
+- admin.ejs
+- orders_show.ejs
+- menu_index.ejs      //shows category
+- menu_show.ejs
 - 
-- login.ejs
-- order_new.ejs
+
 - order_form.ejs
-- cart_show
-- 
+- cart_show.ejs
+ 
 
 
 ## End Points
 
+
+
  `route.use ("/api/orders","/")`
-
-
-
-
-
-  - button to toggle menu
-  - button to show cart `$Total (5 items)`
-
-- button to show cart `$Total (5 items)`  
-  - item
-  - Renders items
-
-- button to toggle menu
-
-
-
-# cart.css
-
- lineItem () generate template 
-
-```js
-
-subtotal = (qty, price) {
-
-  return (qty * price )
-
-}
- lineItem = `
-
- <div> My order ${sum(items.qty)} items </div>
- <tr>
-    <td> x${items.qty} 
-    <td> ${items.description} 
-    <td> ${subtotal(items.qty, items.price)}
- </tr>
- ` 
-
 
