@@ -2,49 +2,101 @@
 
 # [PROJECT PLAN]
 
-## Day 1
-  [] User story (HL)
-  [] Wireframe (Mays )
-  [] App flow (AJ)
-    * user experience
-      - user visiting page -> browsing for dishes based on category -> selecting of items -> add / remove -> placing order -> form phone # + name submit + credit infomation -> confirmation on screen -> SMS both client and restaurant
-
-    * restaurant experience
-      - recieves SMS notificaiton for order -> wbesite updates with new orders (render tweets on new tweet) -> specify time to fulfill (default || override) ->
-        order is ready -> mark complete -> app sends SMS to notify customer
-
-        similar to tweeter behaviour for the restaurant
-        owner can see the order in a tweet like container
-        submit  tweet => submit order => update dB and render the "tweets" (order)
-
-      - new order goes to the bottom of the list (.append)
-      - once order is complete, it pops off the order list
-
-  [] ERD
-      - menu_dishes
-      - orders
-
-  [] SPA vs `MPA`
-    - two pages
+## Day 1: Project Planning
+  [x] User story (HL)
+  [x] Wireframe (Mays)
+  [x] SPA vs `MPA`
+    - decided on a multi page approach with SPA *behaviour*
       - one for customer order (one desktop/one mobile)
       - one page for restaurant owner (dashboard like with order# and time placed)
 
-## Day 2
-  [] Routes
-    [] Customers views
-    [] Restaurant views
+## Day 2: Project Planning 
+  [x] Web app flow (AJ)
+  [x] views mock-up (AJ)
+  [x] ERD (Mays)
+      - menu_dishes
+      - orders    
 
-## Day 3
+## Day 3: Sunday
+  [] AJ skeleton HTML for all pages
+    [] landing page
+    [] cusomer view
+    [] owner view
+  [] backend route endpoints
+    [] use dummy data in-memory objects
+
+  [] client.js 
+  [] hasan will take care of `createOrder`   
+      [] hasan will take care of `renderOrders` 
+    
+  [] mays will take care of `createItem` 
+    [] mays will take care of `renderItems`
+  [] mays will take care of `creatLineItem` 
+    [] mays will take care of `renderItems`
+  
+
+## Day 4 Monday
   []
 
-## Day 4
+## Day 5 Tuesday
   []
 
-## Day 5
+## Day 6 Wednsday 
   []
 
-## Day 6
-  []
+## Day 7 Thursday
 
 
+
+
+# Web-app Front End Structure
+
+- landing page
+  - header [logo   | Cart]
+  - nice backgrond photos slideshow :)
+  - Order now button 
+## html [layout.css]
+- header [header.css]
+- main  
+    - restauarnt [orders.css] OR
+    - customer   [items.css]
+- lef side bar [navbar.css]
+- right side bar [cart.css]
+- footer [foot.css] 
+
+## CSS 
+  - layout.css          //main page styling
+  - header.css          //header styling
+    - flex box
+  - navbar.css          //left side bar styling
+  - cart.css            //right side bar styling
+  - orders.css          //orders styling
+    - order-container
+  - items.css           //food items styling
+    - food-container       
+  - order_form.css      //styling for 
+  - footer.css          //optional (c) MAH Team Awesome 2021 ;)
+
+
+
+# Web-app Back End
+
+## Views
+
+- admin.ejs
+- orders_show.ejs
+- menu_index.ejs      //shows category
+- menu_show.ejs
+- 
+
+- order_form.ejs
+- cart_show.ejs
+ 
+
+
+## End Points
+
+
+
+ `route.use ("/api/orders","/")`
 
