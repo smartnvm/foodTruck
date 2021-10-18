@@ -52,6 +52,11 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+// Temporary route to test out owner order details
+app.get("/orders/active", (req, res) => {
+  res.render(("orders"));
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

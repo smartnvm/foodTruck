@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Order Details</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/orders.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/orders.js"></script>
+</head>
+
+<body>
+  <!-- <h1>ACTIVE ORDERS<h1> -->
+  <!-- Section to hold the all the elements for the owner's view -->
+
+  <!-- Left side bar -->
+  <nav></nav>
+
+
+
+  <!-- Main container for orders -->
+  <section class="orders-container">
+
+    <main class="order-box">
+
+      <div class="set-time">
+        <button class="set-time-button">15 MIN</button>
+        <button class="set-time-button">30 MIN</button>
+        <button class="set-time-button">45 MIN</button>
+      </div>
+
+      <div class="order-details">
+        <div class="order-number">Order#: 100123555</div>
+        <table class="order-line">
+          <tr class="order-line">
+            <td class="order-qty">2x</td>
+            <td class="order-item">Chicken Tandoori</td>
+          </tr>
+        </table>
+        <div class="order-notes">Note: Add Raisins</div>
+      </div>
+
+      <div class="order-fulfilled">
+        <button class="order-fulfilled-button" type="button">Checkmark</button>
+      </div>
+
+    </main>
+
+
+    <footer class="order-time">
+      <div class="time-ordered">12 min ago</div>
+      <div class="time-remaining">20 min remaining</div>
+    </footer>
+
+
+  </section>
+
+
+
+</body>
+
+</html>

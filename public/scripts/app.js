@@ -55,10 +55,10 @@ const generateOrders = (orders) => {
   const $orderContainer = $(".orders-container");
   $orderContainer.empty();
 
-  // repopulate blog-container
+  // repopulate order-container
   for (const order of orders) {
     const $order = createOrder(order);
-    $orderContainer.prepend($tweet);
+    $orderContainer.prepend($order);
   }
 }
 
