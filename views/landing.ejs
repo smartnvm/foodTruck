@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta Information -->
+  <title>Tweeter - Home Page</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    type="text/css" />
+
+  <!-- App CSS -->
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/tweetForm.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
+
+
+  <!-- External JS -->
+  <!-- reference jQuery CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
+    integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+  <!-- App JS -->
+  <script type="text/javascript" src="/scripts/client.js"></script>
+
+
+  <!-- App Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap"
+    rel="stylesheet">
+
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+
+<body>
+  <!-- Top nav bar (fixed) -->
+  <nav class="navbar">
+    <span class="logo"> tweeter
+      <!-- <i class="icon fas fa-dove fa-xs fa-flip-horizontal"></i> -->
+      <!-- <sub><i class=" fas fa-dove  fa-xs "></i></sub> -->
+      <!-- <sup><i class="fas fa-dove  fa-xs "></i></sup> -->
+      <i class="logo icon fas fa-dove  fa-xs "></i>
+    </span>
+
+    <div class="nav">
+      <div class="box">
+        <div> Write  <span class="span"> a new tweet </span></div>
+      </div>
+        <ul>
+          <li><i class="animate fa fa-angle-double-down icone " id='showForm'></i><li>
+        </ul>
+    </div>
+
+  </nav>
+
+
+  <header class="header">
+
+    <img id="avatar" src="./images/snake.png">
+    <p class="username">Snake</p>
+    <!-- </div> -->
+
+  </header>
+
+  <!-- Page-specific (main) content here -->
+  <main class="container">
+    <div class="errmsg">
+      <div id="minlim"> &#9888 Ooopps! Tweet can't be empty &#9888</div>
+      <div id='maxlim'> &#9888 Ooooops! Maximum character limit is 140 &#9888</div>
+    </div>
+    <section class="new-tweet" id="newTweet">
+      <!-- <form action="/tweets" method="post"> -->
+      <form id="new-tweet-form">
+        <textarea name="text" id="tweeter-text" placeholder="What are you humming about?"></textarea>
+        <div class="form-ui">
+          <button class="tweet-button" type="submit">Tweet</button>
+          <output name="counter" id="counter" for="tweet-text">140</output>
+        </div>
+      </form>
+    </section>
+
+    <section class='tweet-container'>
+
+      <article class="tweet">
+        <header>
+          <div class='profile'>
+            <span> avatar name </span>
+          </div>
+          <div class='handle'>
+            @handle
+          </div>
+        </header>
+
+        <div class='body'>
+          <p>ajlsdfj alfjlafj lajf lasjfd </p>
+        </div>
+        <br>
+        <footer>
+          <span class="tweetage"> timepassed </span>
+          <div class="reactions">
+            <i class="fa fa-xs fa-flag"></i>
+            <i class="fa fa-xs fa-retweet"></i>
+            <i class="fa fa-xs fa-heart"></i>
+          </div>
+        </footer>
+
+      </article>
+
+    </section>
+
+  </main>
+
+
+</body>
+
+
+<!-- main client.js scriptfile   -->
+<script src="./scripts/client.js"></script>
+
+
+</html>
