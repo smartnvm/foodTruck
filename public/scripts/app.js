@@ -1,34 +1,39 @@
 // Client facing scripts here
+// work in progress
+// not sure if need to split between "orders" and "menu items"
 
 $(() => {
 
   fetchData();
 
-  const $form = $("#new-tweet-form");
+  const $form = $("#new-order-form");
   $form.on("submit", function (event) {
     event.preventDefault();
 
-    let chars = $('#tweeter-text').val().length;
-
-    if (!validateForm(chars)) return;
-
     const serializedData = $(this).serialize();
 
-    $.post("/tweets", serializedData, (response) => {
+    $.post("/orders", serializedData, (response) => {
       //onsole.log(response)
-      fetchTweets();
+      fetchData();
     });
-    console.log('form was submitted, reset text area');
+    console.log('form submitted!');
 
-    $('#tweeter-text').val('');
   });
+
 
 });
 
 
 
+/*
+fetchData makes a GET request to server
+server pushes data from the sql query
 
+passing endpoint as a variable for code re - use
+  /api/menu
+  /api/orders
 
+*/
 const fetchData = (endpoint) => {
   $.ajax({
     url: `${endpoint}`,
@@ -37,12 +42,12 @@ const fetchData = (endpoint) => {
     success: (data) => {
       if (endpoint === "/api/menu") {
         //Mays case
-        generateItems(data);
+        renderItems(data);
         generate;
 
         //Hasan case
       } else if (endpoint === '/api/orders')
-        generateOrders(data);
+        renderOrders(data);
     },
     error: (err) => {
       console.log(`there was an error: ${err}`);
@@ -50,28 +55,29 @@ const fetchData = (endpoint) => {
   });
 };
 
-const generateOrders = (orders) => {
+
+const renderOrders = (orders) => {
   // clear out order-container
   const $orderContainer = $(".orders-container");
   $orderContainer.empty();
 
-  // repopulate blog-container
+  // repopulate order-container
   for (const order of orders) {
     const $order = createOrder(order);
-    $orderContainer.prepend($tweet);
+    $orderContainer.prepend($order);
   }
 }
 
 
 
-const generateTweets = (tweets) => {
-  // clear out blog-container
-  const $tweetContainer = $(".tweet-container");
-  $tweetContainer.empty();
+const renderMenu = (items) => {
+  // clear out menu-container
+  const $menuContainer = $(".menu-container");
+  $menuContainer.empty();
 
-  // repopulate blog-container
-  for (const tweet of tweets) {
-    const $tweet = createTweet(tweet);
-    $tweetContainer.prepend($tweet);
+  // repopulate menu-container
+  for (const item of items) {
+    const $item = createItem(item);
+    $menuContainer.prepend($item);
   }
 }

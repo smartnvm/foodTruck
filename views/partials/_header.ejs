@@ -1,0 +1,44 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-success">
+    <a class="navbar-brand" href="/login">TinyApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+
+        <% if (user && loggedIn) { %>
+          <a class="nav-item nav-link" href="/urls/">My URLs</a>
+          <a class="nav-item nav-link" href="/urls/new">Create New URL</a>
+          <% } %>
+
+      </div class="container float-right">
+
+    </div>
+
+      <% if (user && loggedIn) { %>
+        <div>
+          <form method="POST" action="/logout">
+          <h2 class="navbar-brand">Hello, <%= user.name %> 🙋
+          </h2>
+          <button type="submit" class="btn btn-light">Logout</button>
+        </form>
+      </div>
+
+        <% } else { %>
+
+          <form class="form-inline" action="/register" method="GET">
+            <button type="submit" class="btn btn-outline-light">Register</button>
+          </form>
+          <pre> | </pre>
+          <form class="form-inline" action="/login" method="GET">
+            <button type="submit" class="btn btn-outline-light">Login</button>
+          </form>
+          <% } %>
+    
+  </nav>
+   <%#-JSON.stringify(locals)   %>   
+ 
+</header>
