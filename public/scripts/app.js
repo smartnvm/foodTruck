@@ -5,9 +5,11 @@
 $(() => {
 
   fetchData();
+  console.log('cart page')
 
   const $form = $("#new-order-form");
   $form.on("submit", function (event) {
+    console.log('hellli')
     event.preventDefault();
     const serializedData = $(this).serialize();
     $.post("/orders", serializedData, (response) => {
@@ -16,6 +18,7 @@ $(() => {
     });
     console.log('form submitted!');
   });
+
 });
 
 
@@ -29,19 +32,20 @@ passing endpoint as a variable for code re - use
   /api/orders
 
 */
+const endpoint = '/api/menu'
 const fetchData = (endpoint) => {
   $.ajax({
     url: `${endpoint}`,
     method: "GET",
     dataType: "json",
     success: (data) => {
+     console.log(data)
       if (endpoint === "/api/menu") {
         //Mays case
-        renderMenu(data);
-        generate;
+        renderMenu(data)
 
         //Hasan case
-      } else if (endpoint === '/api/orders')
+      } else if (endpoint === '/orders')
         renderOrders(data);
     },
     error: (err) => {
@@ -75,4 +79,34 @@ const renderMenu = (items) => {
     const $item = createItem(item);
     $menuContainer.append($item);
   }
+}
+
+
+const createItem = (tweet) => {
+
+  const $tweet = $(`
+  <article class="tweet">
+    <header>
+    <div class='profile'>
+        <img src="${tweet.user.avatars}">
+        <p>${tweet.user.name}</p>
+    </div>tweet
+        <div class ='handle'>${tweet.user.handle}</div>
+      </header>
+
+      <div class='body'>
+        <span>${escape(tweet.content.text)}</span>
+      </div>
+      <br>
+      <footer>
+        <span class class="tweetage">${timeago.format(tweet.created_at)}</span>
+        <div class="reactions">
+          <i class="fa fa-xs fa-flag"></i>
+          <i class="fa fa-xs fa-retweet"></i>
+          <i class="fa fa-xs fa-heart"></i>
+        </div>
+      </footer>
+
+    </article>`);
+  return $tweet
 }

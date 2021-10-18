@@ -1,34 +1,23 @@
 <!DOCTYPE html>
 <html>
 
+
+
 <head>
-  <title>Admin Area</title>
-
   <!-- Meta Information -->
+  <title>Tweeter - Home Page</title>
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
-
-
-  <link rel="stylesheet" id="bootstrap-css"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <!------ Include the above in your HEAD tag ---------->
 
   <!-- External CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
     type="text/css" />
 
   <!-- App CSS -->
-  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-
-  <!-- <link rel="stylesheet" href="/styles/main.css" type="text/css" /> -->
-  <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
-  <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
-  <!-- <link rel="stylesheet" href="/styles/nav.css" type="text/css" /> -->
-  <!-- <link rel="stylesheet" href="/styles/header.css" type="text/css" /> -->
-  <link rel="stylesheet" href="/styles/style.css" type="text/css" />
-
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/tweetForm.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
 
 
   <!-- External JS -->
@@ -43,50 +32,237 @@
 
 
   <!-- App JS -->
-  <script type="text/javascript" src="/scripts/client.js"></script>
+  <script type="text/javascript" src="/public/scripts/app.js"></script>
 
 
   <!-- App Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link
     href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap"
     rel="stylesheet">
 
-
-
-  <!--Fontawesome CDN-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
     integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
-
-
-
-
-  <!--Custom styles-->
-  <!-- <link rel="stylesheet" type="text/css" href="../public/styles/style.css"> -->
-
 </head>
-<div class="d-flex align-items-center">
 
 
-<%- include('partials/_header') %>
+<%# include('partials/_header') %>
+
 
   <body>
+    <!-- Top nav bar (fixed) -->
+    <nav class="navbar">
+      <span class="logo"> tweeter
+        <!-- <i class="icon fas fa-dove fa-xs fa-flip-horizontal"></i> -->
+        <!-- <sub><i class=" fas fa-dove  fa-xs "></i></sub> -->
+        <!-- <sup><i class="fas fa-dove  fa-xs "></i></sup> -->
+        <i class="logo icon fas fa-dove  fa-xs "></i>
+      </span>
+
+      <div class="nav">
+        <div class="box">
+          <div> Write <span class="span"> a new tweet </span></div>
+        </div>
+        <ul>
+          <li><i class="animate fa fa-angle-double-down icone " id='showForm'></i>
+          <li>
+        </ul>
+      </div>
+
+    </nav>
 
 
-    <div >
+    <header class="header">
+
+      <img id="avatar" src="./images/snake.png">
+      <p class="username">Snake</p>
+      <!-- </div> -->
+
+    </header>
+
+    <!-- Page-specific (main) content here -->
+    <main class="container">
+      <div class="errmsg">
+        <div id="minlim"> &#9888 Ooopps! Tweet can't be empty &#9888</div>
+        <div id='maxlim'> &#9888 Ooooops! Maximum character limit is 140 &#9888</div>
+      </div>
+      <section class="new-tweet" id="newTweet">
+        <!-- <form action="/tweets" method="post"> -->
+        <form id="new-tweet-form">
+          <textarea name="text" id="tweeter-text" placeholder="What are you humming about?"></textarea>
+          <div class="form-ui">
+            <button class="tweet-button" type="submit">Tweet</button>
+            <output name="counter" id="counter" for="tweet-text">140</output>
+          </div>
+        </form>
+      </section>
+
+      <section class='tweet-container'>
+        <% for( const key in categories ) { %>
+
+        <article class="tweet">
+          <header>
+            <div class='profile'>
+              <span> avatar name </span>
+            </div>
+            <div class='handle'>
+
+            </div>
+          </header>
+
+          <div class='body'>
+
+
+
+
+              <%= categories[key].name %>
+              <%= categories[key].id %>
+              <br>
+
+
+            </div>
+            <br>
+            <footer>
+
+
+              <span class="tweetage"> timepassed </span>
+              <div class="reactions">
+                <i class="fa fa-xs fa-flag"></i>
+                <i class="fa fa-xs fa-retweet"></i>
+                <i class="fa fa-xs fa-heart"></i>
+              </div>
+            </footer>
+
+          </article>
+          <% } %>
+
+      </section>
+
+    </main>
+
+    <div>
 
       <b> page 2</b>this is my cart page
 
+      <div>brought you by Hasan</div>
+
     </div>
 
-
   </body>
+
+
+<script type="text/javascript">
+
+
+  // Client facing scripts here
+// work in progress
+// not sure if need to split between "orders" and "menu items"
+
+$(() => {
+
+  console.log('cart page')
+  fetchData();
+
+});
+
+
+
+/*
+fetchData makes a GET request to server
+server pushes data from the sql query
+
+passing endpoint as a variable for code re - use
+  /api/menu
+  /api/orders
+
+*/
+const endpoint = '/api/menu'
+const fetchData = () => {
+  console.log('you are here! ')
+  $.ajax({
+    url: '/api/menu',
+    method: "GET",
+    dataType: "json",
+    success: (data) => {
+     console.log('--xxxxxxxxxxx------',data)
+      // if (endpoint === "/api/menu") {
+        //Mays case
+        renderMenu(data)
+
+        //Hasan case.........................text/javascript
+
+      // } else if (endpoint === '/orders')
+        // renderOrders(data);
+    },
+    error: (err) => {
+      console.log(`there was an error: ${err}`);
+    }
+  });
+};
+
+
+const renderOrders = (orders) => {
+  // clear out order-container
+  const $orderContainer = $(".tweet-container");
+  $orderContainer.empty();
+
+  // repopulate order-container
+  for (const order of orders) {
+    const $order = createOrder(order);
+    $orderContainer.append($order);
+  }
+}
+
+
+
+const renderMenu = (items) => {
+  // clear out menu-container
+  const $menuContainer = $(".container");
+  $menuContainer.empty();
+
+  // repopulate menu-container
+  for (const item of items) {
+    const $item = createItem(item);
+    $menuContainer.append($item);
+  }
+}
+
+createOrder
+const createItem = (tweet) => {
+
+  const $tweet = $(`
+  <article class="tweet">
+    <header>
+    <div class='profile'>
+        <img src="${tweet.categories.id}">
+        <p>${tweet.categories.name}</p>
+    </div>tweet
+        <div class ='handle'>${tweet.categories.id}</div>
+      </header>
+
+      <div class='body'>
+        <span> </span>
+      </div>
+      <br>
+      <footer>
+        <span class class="tweetage">
+        <div class="reactions">
+          <i class="fa fa-xs fa-flag"></i>
+          <i class="fa fa-xs fa-retweet"></i>
+          <i class="fa fa-xs fa-heart"></i>
+        </div>
+      </footer>
+
+    </article>`);
+  return $tweet
+}
+
+
+</script>
 
 
 </html>

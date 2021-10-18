@@ -17,7 +17,7 @@ const usersdB = require('../lib/admin');
 module.exports = (router, db) => {
 
   router.get("/test", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+    db.query(`SELECT * FROM orders;`)
       .then(data => {
         const users = data.rows;
         res.json({ users });
@@ -48,6 +48,7 @@ module.exports = (router, db) => {
   router.get("/orders", (req, res) => {
     const userId = req.session.user_id;
     const user = usersdB[userId];
+
 
     //check if user is logged in, and redirect to login if not
     if (!user) {
