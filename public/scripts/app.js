@@ -9,18 +9,13 @@ $(() => {
   const $form = $("#new-order-form");
   $form.on("submit", function (event) {
     event.preventDefault();
-
     const serializedData = $(this).serialize();
-
     $.post("/orders", serializedData, (response) => {
       //onsole.log(response)
       fetchData();
     });
     console.log('form submitted!');
-
   });
-
-
 });
 
 
@@ -42,7 +37,7 @@ const fetchData = (endpoint) => {
     success: (data) => {
       if (endpoint === "/api/menu") {
         //Mays case
-        renderItems(data);
+        renderMenu(data);
         generate;
 
         //Hasan case
@@ -64,7 +59,7 @@ const renderOrders = (orders) => {
   // repopulate order-container
   for (const order of orders) {
     const $order = createOrder(order);
-    $orderContainer.prepend($order);
+    $orderContainer.append($order);
   }
 }
 
@@ -78,6 +73,6 @@ const renderMenu = (items) => {
   // repopulate menu-container
   for (const item of items) {
     const $item = createItem(item);
-    $menuContainer.prepend($item);
+    $menuContainer.append($item);
   }
 }

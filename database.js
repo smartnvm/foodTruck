@@ -2,10 +2,10 @@ const bcrypt = require('bcrypt');
 const { Pool } = require('pg');
 
 const pool = new Pool({
-	user: 'vagrant',
-	password: '123',
+	user: 'labber',
+	password: 'labber',
 	host: 'localhost',
-	database: 'lightbnb',
+	database: 'midterm',
 });
 
 /// Users
@@ -124,7 +124,7 @@ const getAllProperties = function (options, limit = 10) {
 	}
 
 	queryParams.push(limit);
-	strQuery += `ORDER BY cost_per_night DESC, average_rating DESC 
+	strQuery += `ORDER BY cost_per_night DESC, average_rating DESC
               LIMIT $${queryParams.length};`;
 
 	return pool
@@ -162,10 +162,10 @@ const addProperty = function (property) {
 	} = property;
 
 	const sqlQuery = `INSERT INTO
-      properties ( owner_id,  title,  description,  
-        thumbnail_photo_url,  cover_photo_url,  cost_per_night, 
-        parking_spaces,  number_of_bathrooms,  number_of_bedrooms,  
-        country,  street,  city,  province,  post_code,  active) 
+      properties ( owner_id,  title,  description,
+        thumbnail_photo_url,  cover_photo_url,  cost_per_night,
+        parking_spaces,  number_of_bathrooms,  number_of_bedrooms,
+        country,  street,  city,  province,  post_code,  active)
       VALUES ($1, $2, $3,$4, $5, $6, $7, $8, $9,
               $10, $11, $12, $13, $14, $15)
       RETURNING *;`;
