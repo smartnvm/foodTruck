@@ -62,10 +62,20 @@ const adminRoutes = require("./routes/admin");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
+// DO NOT use usersRoutes - not needed for now
 app.use("/api/users", usersRoutes(router, db));
+
+//ordersRoutes:
+//menu categories / food items and order form
+//I suppose we could render a single page for SPA behaviour
+//not sure how to go about the html
 app.use("/api/orders", ordersRoutes(router, db));
 
-// Note: mount other resources here, using the same pattern above
+//adminRoutes:
+//login , active orders , orders history
+//my thinking is to render different pages
+//I suppose we could render a single page for SPA behaviour
+//not sure how to go about the html
 app.use('/', adminRoutes(router, db));
 
 // Home page
