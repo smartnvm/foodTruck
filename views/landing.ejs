@@ -20,7 +20,7 @@
     type="text/css" />
 
   <!-- App CSS -->
-  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" /> -->
 
   <!-- <link rel="stylesheet" href="/styles/main.css" type="text/css" /> -->
   <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
@@ -29,7 +29,9 @@
   <!-- <link rel="stylesheet" href="/styles/header.css" type="text/css" /> -->
   <link rel="stylesheet" href="/styles/style.css" type="text/css" />
 
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
   <!-- External JS -->
   <!-- reference jQuery CDN -->
@@ -69,21 +71,53 @@
 
   <!--Custom styles-->
   <!-- <link rel="stylesheet" type="text/css" href="../public/styles/style.css"> -->
+<style>
+  img {
+    width: auto;
+    height: 50vh;
+  }
+  </style>
 
 </head>
-
 
 <%- include('partials/_header') %>
 
   <body>
 
 
-    <div >
+    <div id="myCarousel" class=" carousel slide" data-ride="carousel" data-interval="3000">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
 
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea" alt="Los Angeles">
+        </div>
 
+        <div class="item">
+          <img src="https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81" alt="Chicago">
+        </div>
+
+        <div class="item">
+          <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061" alt="New york" >
+        </div>
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
-
-
   </body>
 
 
