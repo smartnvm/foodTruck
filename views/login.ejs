@@ -76,14 +76,72 @@
 <%- include('partials/_header') %>
 
   <body>
+    <br><br><br>
+    <% if (user && errCode===200) { %>
+      <form method="POST" action="/logout">
+        <h2 class="navbar-brand">Hello, <%= user.name %>
+        </h2>
+        <button type="submit" class="btn btn-light">Logout</button>
+      </form>
+      <% } %>
+
+        <div class="d-flex justify-content-center  ">
+          <div class="card">
+            <div class="card-header text-center">
+              <h3>Admin</h3>
+              <!-- <img src="/images/tinyURL.png" /> -->
+
+            </div>
 
 
-    <div >
+            <div class="card-body">
+              <form class="form" action="/login" method="POST">
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-at"></i></span>
+                  </div>
+                  <input type="text" class="form-control" name="username" placeholder="john@smith.com">
+                </div>
+
+                <div class="input-group form-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                  </div>
+                  <input type="password" class="form-control" name="password" placeholder="password">
+                </div>
+
+                <div class="form-group">
+                  <input type="submit" value="Login" class="btn float-right login_btn">
 
 
-    </div>
+                </div>
+
+              </form>
+
+            </div>
+
+            <div class="card-title text-center" style="color:white">
 
 
+                <% if (errCode===401) { %>
+
+                  <h6 class="">&#10060 Error <%= errCode %>
+                  </h6>
+                  <h6 class="">Invalid password! Try again.</h6>
+                  <% } else if (errCode===400) { %>
+                    <h6> &#10060 Error <%= errCode %> user not found!</h6>
+                    <% } else if (errCode===402) { %>
+                      <h6>&#10060 Error <%= errCode %>
+                      </h6>
+                      <h6>Invalid user name or password!</h6>
+                      <% } else if (errCode===403) { %>
+                        <h6>&#10060 Error <%= errCode %>
+                        </h6>
+                        <h6>Access denied! Please login first!</h6>
+                        <% } %>
+
+              </div>
+            </div>
   </body>
 
 
