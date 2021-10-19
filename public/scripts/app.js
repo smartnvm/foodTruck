@@ -1,5 +1,5 @@
 // Client facing scripts here
-
+/*
 $(() => {
 
   fetchData();
@@ -75,3 +75,4 @@ const generateTweets = (tweets) => {
     $tweetContainer.prepend($tweet);
   }
 }
+*/
