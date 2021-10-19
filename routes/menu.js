@@ -14,20 +14,36 @@ const { varInit,
 module.exports = (router, db) => {
   router.get("/api/menu", (req, res) => {
 
+    const id = 1;
+    let query = `SELECT id, name from categories;`;
 
-    const id = 1
-    let query = `SELECT * FROM categories where id  > $1`;
     console.log(query);
 
 
-    db.query(query,[id])
+    db.query(query)
       .then(data => {
         const categories = data.rows;
         //res.send({categories})
-        //  return
-        const templateVars = varInit(true, 200, 'customer',categories)
-        res.render('cart', templateVars);
+        const strquery = `SELECT items.description as description,
+        items.price, items.url,
+          categories.name as category FROM items
+           join categories on categories.id = category_id
+            where category_id = 1`;
+
+        return db.query(strquery)
+          .then(foodItem => {
+            const obj = Object.assign({}, { categories }, { foodItem: foodItem.rows })
+            return obj;
+          });
       })
+      .then(data => {
+        const templateVars = varInit(false, 200, 'customer', data);
+        //res.send(data);
+        res.render('cart', templateVars);
+      }
+
+
+      )
       .catch(err => {
         res
           .status(500)
@@ -59,7 +75,7 @@ module.exports = (router, db) => {
   router.get("/new", (req, res) => {
 
     res.send('this is new order page');
-    return
+    return;
     let query = `SELECT * FROM orders`;
     console.log(query);
     db.query(query)
@@ -84,10 +100,10 @@ module.exports = (router, db) => {
     const templateVars = varInit(false, null, null, null);
     // res.render('cart', templateVars);
 
-    let query = `SELECT * FROM orders`;
+    let query = `SELECT * FROM categories`;
     console.log(query);
     db.query(query)
-      .then(data => data.rows)
+      .then(data => res.send(data.rows))
       .catch(err => {
         res
           .status(500)
@@ -98,42 +114,42 @@ module.exports = (router, db) => {
 
 
 
-// all test endpoint go here
+  // all test endpoint go here
 
 
-router.post("/api/mays", (req, res) => {
-  //once a user checks out
-  //takes to a form this would the endpoint for PLACE ORDER
+  router.post("/api/mays", (req, res) => {
+    //once a user checks out
+    //takes to a form this would the endpoint for PLACE ORDER
 
-  //parse the body of the cart
-  cart = req.body
+    //parse the body of the cart
+    cart = req.body;
 
-  // cat = {
-  //   qty: 2
-  //   item.id: 10
-  //   category_id:
+    // cat = {
+    //   qty: 2
+    //   item.id: 10
+    //   category_id:
 
-  // }
+    // }
 
-  //  5 would come from the front end on a POST
-  const id = 5
-  let query = `SELECT * FROM categories where id  = $1`;
-  console.log(query);
+    //  5 would come from the front end on a POST
+    const id = 5;
+    let query = `SELECT * FROM categories where id  = $1`;
+    console.log(query);
 
 
-  db.query(query,[id])
-    .then(data => {
-      const categories = data.rows;
-      res.send({categories})
-      return
-      res.render('cart', { categories });
-    })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
-});
+    db.query(query, [id])
+      .then(data => {
+        const categories = data.rows;
+        res.send({ categories });
+        return;
+        res.render('cart', { categories });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
 
 
 

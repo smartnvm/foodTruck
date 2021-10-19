@@ -9,10 +9,10 @@
   <!-- <a class="navbar-brand" href="/admin"> <b>   &#9776   <i>food</i>Truck</b></a> -->
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <% if (user && loggedIn) { %>
-        <a class="nav-item nav-link" href="/urls/">My URLs</a>
-        <a class="nav-item nav-link" href="/urls/new">Create New URL</a>
-        <% } %>
+      <%# if (user && loggedIn) { %>
+        <!-- <a class="nav-item nav-link" href="/urls/">My URLs</a> -->
+        <!-- <a class="nav-item nav-link" href="/urls/new">Create New URL</a> -->
+        <%# } %>
       </div>
 
     </div class="container float-right">
@@ -31,7 +31,7 @@
             <button type="submit" class="btn btn-outline-warning">myCart</button>
           </form>
           <pre> | </pre>
-          <form class="form-inline" action="api/orders/new" method="GET">
+          <form class="form-inline" action="/api/menu" method="GET">
             <button type="submit" class="btn btn-outline-warning">Order Now</button>
           </form>
           <% } %>

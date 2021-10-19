@@ -1,95 +1,214 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Oder Menu</title>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <%- include('partials/_header') %>
-    <title>TinyApp</title>
+
+  <!-- Meta Information -->
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+
+
+  <link rel="stylesheet" id="bootstrap-css"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    type="text/css" />
+
+  <!-- App CSS -->
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+
+  <!-- <link rel="stylesheet" href="/styles/main.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/nav.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/header.css" type="text/css" /> -->
+
+  <link rel="stylesheet" href="/styles/style.css" type="text/css" />
+
+
+
+  <!-- External JS -->
+  <!-- reference jQuery CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
+    integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+  <!-- App JS -->
+  <script type="text/javascript" src="/scripts/client.js"></script>
+
+
+  <!-- App Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap"
+    rel="stylesheet">
+
+
+
+  <!--Fontawesome CDN-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+  <style>
+    html,
+    body {
+      margin: 0px;
+      overflow: hidden;
+      ;
+    }
+  </style>
+
+
+
 </head>
 
-<body>
-  <main style="margin: 1em;">
-    <h3>My URLs</h3>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Short URL</th>
-          <th scope="col">Long URL</th>
-          <th scope="col">Edit </th>
-          <th scope="col">Delete </th>
-          <th scope="col">Date Created </th>
-          <th scope="col">Hits Count </th>
-          <th scope="col">Unique Hits </th>
-        </tr>
-      </thead>
-      <tbody>
-        <%- JSON.stringify(locals) %>
+<%- include('partials/_header') %>
+
+  <body>
+    <!-- <header style="
+		display: flex;
+		justify-content: start;
+		background-color: darkcyan;
+		width: 100vw;
+		padding: 10px;
+		font-size: 1.5em;
+		font-family:Arial, Helvetica, sans-serif;
+		font-weight: bold;
+		color: white">
+      &#9776 navbar
+    </header> -->
+
+    <div id="page-container" style="
+        display: flex;
+        width: 90vw;
+        height: 100vh;
+        margin: 0;
+        border: 2px black;
+
+      ">
+
+      <%#- JSON.stringify(locals) %>
+
+        <div id="leftsidebar" style="
+          display: flex;
+					flex-direction: column;
+          flex-grow: 100;
+          max-width: 20vw;
+          margin: 0;">
+
+<% for( let item of items.categories ) { %>
 
 
-        <% for(const item in items) { %>
-          <tr>
-            <td><a href="/u/<%=items[item].id %>"><%= items[item].id %></a>
-            </td><td><%= items[item].id %></td>
+          <div style="
+				display: flex;
+				justify-content: center;
+				background-color: rgb(77, 165, 165);
+				margin: 5px;
+				padding: 5px;
+				border: solid 2px black;
+        color:white ;
+        font-weight: bold;">
 
-            <td>
-              <form class="form-inline" action="/urls/<%= items[item].name %>" method="GET">
-                <div class="form-group "><button type="submit" class="btn btn-outline-primary">Edit</button>
-                </div>
-              </form>
-            </td>
+[ <%= item.id %> ][ <%= item.name %> ]
 
-            <td>
-              <form class="form-inline" action="/urls/<%#=url %>/delete" method="POST">
-                <div class="form-group "><button type="submit" class="btn btn-outline-danger">DELETE</button>
-                </div>
-              </form>
-            </td>
+          </div>
+          <% } %>
+        </div>
 
-            <td>
-              <form class="form-inline" >
-                <div class="form-group"><div type="text" class="quote"> <%#= urls[url].timestamp %></div>
-                </div>
-              </form>
-            </td>
 
-            <td>
-              <form class="form-inline" >
-                  <div type="text"> <b><%#= urls[url].clicks %> </b></div>
-                  </div>
-                </form>
-            </td>
 
-            <td>
-                <form class="form-inline" >
-                  <div type="text"> <b><%#= urls[url].uClicks %> </b></div>
-                  </div>
-                </form>
-            </td>
 
-          </tr>
+        <div id="content" style="
+				 width: 60vw;
+				 margin: 0;
+				  display: flex;
+					flex-wrap: wrap;
+					align-content:flex-start">
+
+    <% for( let item of items.foodItem ) { %>
+          <div id="article" style="
+            border: solid 5px rgb(119, 202, 126);
+            padding: 10px;
+            margin: 5px;
+            min-width: 20%;
+             max-width: 30%;
+             overflow-wrap: break-word;
+
+          ">
+
+           [ <%= item.description %>]  %>
+           [ <%= item.price %>]  %>
+           [ <%= item.url %>]  %>
+
+          </div>
 
           <% } %>
 
-      </tbody>
-    </table>
-  </main>
+        </div>
+
+        <div id="rightbar" style="max-width: 25vw; margin: 0;">
 
 
-  <!-- Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-</body>
+          <div style="font-weight: bold; font-size: 1.5em">my cart</div>
+
+          <table>
+            <tr>
+              <td>qty</td>
+              <td>desc</td>
+              <td>price</td>
+            </tr>
+
+            <tr>
+              <td>1</td>
+              <td>pizza</td>
+              <td>$34</td>
+            </tr>
+
+            <tr>
+              <td>1</td>
+              <td>pizza</td>
+              <td>$33</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>pizza</td>
+              <td>$33</td>
+            </tr>
+
+
+          </table>
+
+          <div style="
+			display: flex;
+			flex-direction: column;
+			align-items: end;
+			padding-right: 10px;
+
+			">
+            <div>subtotal: 100</div>
+            <div>hst:13</div>
+            <div>TOTAL:113</div>
+
+          </div>
+        </div>
+
+        <!-- <script src="src/index.js"></script> -->
+  </body>
 
 </html>
