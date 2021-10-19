@@ -4,20 +4,9 @@
 
 $(() => {
 
-  fetchData();
-  console.log('cart page')
-
-  const $form = $("#new-order-form");
-  $form.on("submit", function (event) {
-    console.log('hellli')
-    event.preventDefault();
-    const serializedData = $(this).serialize();
-    $.post("/orders", serializedData, (response) => {
-      //onsole.log(response)
-      fetchData();
-    });
-    console.log('form submitted!');
-  });
+  const endpoint = '/api/menu';
+  console.log(`-------- ${endpoint} ------------`);
+  fetchData(endpoint);
 
 });
 
@@ -32,17 +21,17 @@ passing endpoint as a variable for code re - use
   /api/orders
 
 */
-const endpoint = '/api/menu'
 const fetchData = (endpoint) => {
+console.log('fetchdata-------------,',endpoint)
   $.ajax({
     url: `${endpoint}`,
     method: "GET",
     dataType: "json",
     success: (data) => {
-     console.log(data)
+      console.log(data);
       if (endpoint === "/api/menu") {
         //Mays case
-        renderMenu(data)
+        renderMenu(data);
 
         //Hasan case
       } else if (endpoint === '/orders')
@@ -65,7 +54,7 @@ const renderOrders = (orders) => {
     const $order = createOrder(order);
     $orderContainer.append($order);
   }
-}
+};
 
 
 
@@ -79,7 +68,7 @@ const renderMenu = (items) => {
     const $item = createItem(item);
     $menuContainer.append($item);
   }
-}
+};
 
 
 const createItem = (tweet) => {
@@ -108,5 +97,5 @@ const createItem = (tweet) => {
       </footer>
 
     </article>`);
-  return $tweet
-}
+  return $tweet;
+};

@@ -17,7 +17,7 @@ const usersdB = require('../lib/admin');
 module.exports = (router, db) => {
 
   router.get("/test", (req, res) => {
-    db.query(`SELECT * FROM orders;`)
+    db.query(`SELECT * FROM widgets;`)
       .then(data => {
         const users = data.rows;
         res.json({ users });
@@ -80,11 +80,63 @@ module.exports = (router, db) => {
 
     //authentication success - redirect to orders
     if (user && authStatus.num === 200) {
+      let qty = 5;
+
+
+      const pushToCart = (userId,
+        orderId, itemId, desc, qty, price) => {
+        const tempCart = {
+          [userId]: {
+            userId, orderId, itemId, desc, qty, price
+          }
+        };
+        return tempCart;
+      };
+
+      //write to cookie with cart param
+      //initialize cart parameter to session
+      //the values are retreievd from sql query
+      //select id, order_number, item_description, item_order.qty
+
       req.session.user_id = user.id;
+      req.session.item_id = '5';
+      req.session.order_id = '514646';
+      req.session.description = 'this is beef qorma';
+      req.session.quantity = '1';
+
+      let myCart = pushToCart(
+        req.session.user_id,
+        req.session.order_id,
+        req.session.description,
+        req.session.quantity);
+
+
+      userId = req.session.user_id;
+      orderId = req.session.order_id;
+      itemId = req.session.item_id;
+      desc = req.session.description;
+      qty = req.session.quantity;
+
+
+      myCart = pushToCart(
+        userId, orderId, itemId, desc, qty);
+
+      myCart['0'].qty++;
+      myCart['0'].qty++;
+      myCart['0'].qty++;
+      myCart['0'].qty++;
+      myCart['0'].qty++;
+      myCart['0'].qty++;
+      myCart['0'].qty++;
+      myCart['0'].qty--;
+
+      if (myCart['0'].qty === 0) delete myCart['0'];
+      res.send(myCart);
+
       const templateVars = varInit(true, authStatus.num, user, null);
-      res.render('menu_index', templateVars);
+      // res.render('menu_index', templateVars);
       return;
-    }
+    };
 
     //authentication failed -
     //redirect to login with appropriate error message

@@ -14,6 +14,7 @@ const { varInit,
 module.exports = (router, db) => {
   router.get("/api/menu", (req, res) => {
 
+
     const id = 1
     let query = `SELECT * FROM categories where id  > $1`;
     console.log(query);
@@ -22,8 +23,8 @@ module.exports = (router, db) => {
     db.query(query,[id])
       .then(data => {
         const categories = data.rows;
-        // res.send({categories})
-        // return
+        //res.send({categories})
+        //  return
         res.render('cart', { categories });
       })
       .catch(err => {
@@ -32,6 +33,8 @@ module.exports = (router, db) => {
           .json({ error: err.message });
       });
   });
+
+
 
 
 
@@ -55,19 +58,19 @@ module.exports = (router, db) => {
   router.get("/new", (req, res) => {
 
     res.send('this is new order page');
-
+    return
     let query = `SELECT * FROM orders`;
     console.log(query);
-    // db.query(query)
-    //   .then(data => {
-    //     const orders = data.rows;
-    //     res.json({ orders });
-    //   })
-    //   .catch(err => {
-    //     res
-    //       .status(500)
-    //       .json({ error: err.message });
-    //   });
+    db.query(query)
+      .then(data => {
+        const orders = data.rows;
+        res.json({ orders });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
 
 
@@ -94,7 +97,42 @@ module.exports = (router, db) => {
 
 
 
+// all test endpoint go here
 
+
+router.post("/api/mays", (req, res) => {
+  //once a user checks out
+  //takes to a form this would the endpoint for PLACE ORDER
+
+  //parse the body of the cart
+  cart = req.body
+
+  // cat = {
+  //   qty: 2
+  //   item.id: 10
+  //   category_id:
+
+  // }
+
+  //  5 would come from the front end on a POST
+  const id = 5
+  let query = `SELECT * FROM categories where id  = $1`;
+  console.log(query);
+
+
+  db.query(query,[id])
+    .then(data => {
+      const categories = data.rows;
+      res.send({categories})
+      return
+      res.render('cart', { categories });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+});
 
 
 
