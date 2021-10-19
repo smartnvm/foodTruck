@@ -163,8 +163,9 @@ a:hover {
              overflow-wrap: break-word;
              ">
 
+              <h3><%= item.title %></h3>
               <%= item.description %>
-              [$<%= item.price/100 %>]
+              <b> [$<%= item.price/100 %>] </b>
               <!-- [ <%#= item.url %> ]
               [ <%#= item.catid %> ]
               -->
@@ -174,14 +175,16 @@ a:hover {
                 <button class="addItem btn btn-outline-success far fa-plus-square"
                 id="item_<%- item.id %>"
                 data-id = "<%= item.id %>"
-                data-description="<%= item.description %>"
+                data-title="<%= item.title %>"
+                data-desc="<%= item.description %>"
                 data-price="<%=item.price %>"></button>
 
                 <button class="delItem btn btn-outline-danger far fa-minus-square"
-                  id="item_<%- item.id %>"
-                  data-id = "<%= item.id %>"
-                  data-name="<%= item.name %>"
-                  data-price="<%=item.price %>"></button>
+                id="item_<%- item.id %>"
+                data-id = "<%= item.id %>"
+                data-title="<%= item.title %>"
+                data-description="<%= item.description %>"
+                data-price="<%=item.price %>"></button>
 
               </div>
 

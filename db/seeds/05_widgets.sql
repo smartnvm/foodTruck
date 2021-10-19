@@ -20,6 +20,3 @@ values ('food item 1', 'description for item1', 765, 3, '/images/photo-154606990
  ('food item 12','description for item1', 1112, 1, '/images/photo-1546069901-ba9599a7e63c.jpeg', 2677),
  ('food item 13','description for item1', 1521, 1, '/images/photo-1557748362-4e95f0de4f6f.jpeg', 799);
 
-
-INSERT INTO items (name,description,cal,category_id,url,price)
-VALUES ('mushroom soup','basic roux is thinned with cream or milk and then mushrooms and/or mushroom broth are added',39,1,'photos/mushroom.jpg',3.99);

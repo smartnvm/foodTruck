@@ -14,14 +14,15 @@ $(() => {
   $('.addItem').click(function () {
     const id = $(this).attr('id');
     const price = $(this).attr('data-price');
-    const title = $(this).attr('data-name');
+    const title = $(this).attr('data-title');
+    const desc = $(this).attr('data-desc');
 
     //let qty = Number(sessionStorage.getItem('qty'))+ 1;
 
     //initCart(0, 10001, id, desc, qty, price);
-    // console.log( id, price, desc)
+    // console.log( id,title, price, desc)
 
-    addItem(id, title, price);
+    addItem(id, title, desc,price);
 
   });
 
@@ -29,7 +30,8 @@ $(() => {
   $('.delItem').click(function () {
     const id = $(this).attr('id');
     const price = $(this).attr('data-price');
-    const title = $(this).attr('data-name');
+    const title = $(this).attr('data-title');
+    const desc = $(this).attr('data-desc');
 
     delItem(id, title, price);
   });
@@ -39,7 +41,7 @@ $(() => {
 
 
 
-function addItem(itemId, title, price) {
+function addItem(itemId, title, desc, price) {
 
   let cart = {};
   if (localStorage.getItem('cart')) {
@@ -51,6 +53,7 @@ function addItem(itemId, title, price) {
     cart[itemId] = {
       qty: 0,
       title: title,
+      desc: desc,
       lineTotal: 0
     };
   }
@@ -115,7 +118,7 @@ const createItem = (item) => {
 
   const $lineItem = $(`
       <div id="rightbar">
-        ${item.qty}x \t ${item.desc} \t $${item.lineTotal / 100}
+        ${item.qty}x \t ${item.title} \t $${item.lineTotal / 100}
         </div>`);
   return $lineItem;
 };

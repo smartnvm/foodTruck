@@ -24,7 +24,8 @@ module.exports = (router, db) => {
       .then(data => {
         const categories = data.rows;
         //res.send({categories})
-        const strquery = `SELECT items.description as description,
+        const strquery = `SELECT items.name  as title,
+         items.description as description,
         items.price, items.url, items.id,
           categories.name as category ,
           categories.id as catId FROM items
@@ -68,7 +69,7 @@ module.exports = (router, db) => {
       .then(data => {
         const categories = data.rows;
         //res.send({categories})
-        const strquery = `SELECT items.name as name,
+        const strquery = `SELECT items.name as title,
         items.description as description,
         items.price, items.url, items.id,
           categories.name as category ,
@@ -137,25 +138,46 @@ module.exports = (router, db) => {
 
 
   router.get("/mycart", (req, res) => {
-    // res.send('this is myCart page');
 
-    //initialize template variable,
-    //if we are here we are not logged in
-    const templateVars = varInit(false, null, null, null);
-    // res.render('cart', templateVars);
+    const id = 1;
+    let query = `SELECT id, name from categories;`;
 
-    let query = `SELECT * FROM categories`;
     console.log(query);
+
+
     db.query(query)
-      .then(data => res.send(data.rows))
+      .then(data => {
+        const categories = data.rows;
+        //res.send({categories})
+        const strquery = `SELECT items.name as title,
+         items.description as description,
+        items.price, items.url, items.id,
+          categories.name as category ,
+          categories.id as catId FROM items
+           join categories on categories.id = category_id
+            where category_id = 1`;
+
+        return db.query(strquery)
+          .then(foodItem => {
+            const obj = Object.assign({}, { categories }, { foodItem: foodItem.rows })
+           //res.send(obj)
+            return obj;
+          });
+      })
+      .then(data => {
+        const templateVars = varInit(false, 200, 'customer', data);
+        res.send(data);
+        //  res.render('cart', templateVars);
+      }
+
+
+      )
       .catch(err => {
         res
           .status(500)
           .json({ error: err.message });
       });
   });
-
-
 
 
   // all test endpoint go here
