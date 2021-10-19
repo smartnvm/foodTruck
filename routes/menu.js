@@ -25,7 +25,8 @@ module.exports = (router, db) => {
         const categories = data.rows;
         //res.send({categories})
         //  return
-        res.render('cart', { categories });
+        const templateVars = varInit(true, 200, 'customer',categories)
+        res.render('cart', templateVars);
       })
       .catch(err => {
         res

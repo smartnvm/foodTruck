@@ -98,19 +98,16 @@ module.exports = (router, db) => {
       //the values are retreievd from sql query
       //select id, order_number, item_description, item_order.qty
 
+            let myCart = pushToCart(null,null,null,null,null,null)
+
+      //on click
       req.session.user_id = user.id;
       req.session.item_id = '5';
       req.session.order_id = '514646';
       req.session.description = 'this is beef qorma';
-      req.session.quantity = '1';
+      req.session.quantity = 1;
 
-      let myCart = pushToCart(
-        req.session.user_id,
-        req.session.order_id,
-        req.session.description,
-        req.session.quantity);
-
-
+      //on add updates cart
       userId = req.session.user_id;
       orderId = req.session.order_id;
       itemId = req.session.item_id;
@@ -131,10 +128,10 @@ module.exports = (router, db) => {
       myCart['0'].qty--;
 
       if (myCart['0'].qty === 0) delete myCart['0'];
-      res.send(myCart);
+      //res.send(myCart);
 
       const templateVars = varInit(true, authStatus.num, user, null);
-      // res.render('menu_index', templateVars);
+       res.render('menu_index', templateVars);
       return;
     };
 
