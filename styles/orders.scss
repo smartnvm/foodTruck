@@ -1,0 +1,128 @@
+/* The stylings for the order details on the owners end will go here */
+
+/* .orders-container {
+
+} */
+
+.main-header {
+  border-top: solid;
+  border-bottom: solid;
+  width: 100vw;
+  padding: 1em;
+  text-align: center;
+}
+
+.owner-page {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-buttons {
+  margin: 10px;
+  padding: 0.5em;
+  height: 30vh;
+  border: solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.owner-area {
+  border: solid;
+  margin: 10px;
+  flex-direction: column;
+  flex-grow: 2;
+}
+
+.orders-header {
+  margin: 10px;
+
+}
+
+.orders-container {
+  margin: 10px;
+  border: solid;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+}
+
+.orders-header {
+  border: solid;
+  padding: .25em;
+  text-align: center;
+}
+
+.order-box {
+  border: solid black;
+  margin: 10px;
+
+}
+
+.order-details {
+  border-bottom: solid black;
+  display: flex;
+}
+
+.set-time {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-grow: 0.5;
+}
+
+.order-number {
+  border-bottom: medium solid;
+  padding: .25em;
+  flex-grow: 2.5;
+}
+
+.order-items {
+  border-left: solid black;
+  flex-grow: 2.5;
+}
+
+.order-line {
+  margin: .25em;
+
+}
+
+.order-notes {
+  margin: .25em;
+
+}
+
+.order-fulfilled {
+  border-left: medium solid;
+  flex-grow: 0.75;
+}
+
+.order-fulfilled-button {
+  width: 100%;
+  height: 100%
+}
+
+.order-time {
+  margin: .25em;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .order-line {
+
+} */
+
+/* .order-qty {
+  border-bottom: thin dashed;
+
+}
+
+.order-item {
+  border-bottom: thin dashed;
+  border-left: thin dashed;
+
+} */
