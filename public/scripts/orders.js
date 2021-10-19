@@ -9,19 +9,19 @@
       "order-id": 12345678,
       "time-stamp": Date.now(),
       "order-items": '2x Chicken Tandoori',
-      "order-notes": 'No garlic sauce'
+      "order-notes": 'Note:  No garlic sauce'
     },
     { "id": 2,
     "order-id": 24682468,
     "time-stamp": Date.now(),
     "order-items": '1x Beef Kabab',
-    "order-notes": 'No mayonnaise'
+    "order-notes": 'Note:  No mayonnaise'
     },
     { "id": 3,
     "order-id": 36936936,
     "time-stamp": Date.now(),
     "order-items": '4x Caesar Salad',
-    "order-notes": 'Extra croutons'
+    "order-notes": 'Note:  Extra croutons'
     }
   ]
 
@@ -85,7 +85,8 @@ window.onload = function () {
     const createOrder = function(order) {
       const $order = $(`
 
-          <main class="order-box">
+        <section class="order-box">
+          <main class="order-details">
 
             <div class="set-time">
               <button class="set-time-button">15 MIN</button>
@@ -93,7 +94,7 @@ window.onload = function () {
               <button class="set-time-button">45 MIN</button>
             </div>
 
-            <div class="order-details">
+            <div class="order-items">
               <div class="order-number">Order#: ${order['order-id']}</div>
               <div class="order-line">${order['order-items']}</div>
               <div class="order-notes">${order['order-notes']}</div>
@@ -111,6 +112,7 @@ window.onload = function () {
             <div class="time-ordered">${timeago.format(order['time-stamp'])}</div>
             <div class="time-remaining"><span id="time"></span> min remaining</div>
           </footer>
+        </section>
 
       `)
       return $order;
@@ -125,7 +127,7 @@ window.onload = function () {
       // repopulate order-container
       for (const order of orders) {
         const $order = createOrder(order);
-        $orderContainer.prepend($order);
+        $orderContainer.append($order);
       }
     }
 
