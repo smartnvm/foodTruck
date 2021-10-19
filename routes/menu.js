@@ -12,7 +12,7 @@ const { varInit,
 
 
 module.exports = (router, db) => {
-  router.get("/api/menu", (req, res) => {
+  router.get("/m", (req, res) => {
 
     const id = 1;
     let query = `SELECT id, name from categories;`;
@@ -25,21 +25,23 @@ module.exports = (router, db) => {
         const categories = data.rows;
         //res.send({categories})
         const strquery = `SELECT items.description as description,
-        items.price, items.url,
-          categories.name as category FROM items
+        items.price, items.url, items.id,
+          categories.name as category ,
+          categories.id as catId FROM items
            join categories on categories.id = category_id
             where category_id = 1`;
 
         return db.query(strquery)
           .then(foodItem => {
             const obj = Object.assign({}, { categories }, { foodItem: foodItem.rows })
+           //res.send(obj)
             return obj;
           });
       })
       .then(data => {
         const templateVars = varInit(false, 200, 'customer', data);
-        //res.send(data);
-        res.render('cart', templateVars);
+        // res.send(data);
+         res.render('cart', templateVars);
       }
 
 
@@ -52,6 +54,47 @@ module.exports = (router, db) => {
   });
 
 
+
+  router.get("/m/:id", (req, res) => {
+
+    const id = req.params.id;
+    console.log('=================================',id)
+    let query = `SELECT id, name from categories;`;
+
+    console.log(query);
+
+
+    db.query(query)
+      .then(data => {
+        const categories = data.rows;
+        //res.send({categories})
+        const strquery = `SELECT items.description as description,
+        items.price, items.url, items.id,
+          categories.name as category ,
+          categories.id as catId FROM items
+           join categories on categories.id = category_id
+            where category_id = $1`;
+
+        return db.query(strquery, [id])
+          .then(foodItem => {
+            const obj = Object.assign({}, { categories }, { foodItem: foodItem.rows })
+            return obj;
+          });
+      })
+      .then(data => {
+        const templateVars = varInit(false, 200, 'customer', data);
+        // res.send(data);
+         res.render('cart', templateVars);
+      }
+
+
+      )
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
 
 
 

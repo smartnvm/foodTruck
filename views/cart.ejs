@@ -45,7 +45,7 @@
 
 
   <!-- App JS -->
-  <script type="text/javascript" src="/scripts/client.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
 
 
   <!-- App Fonts -->
@@ -69,9 +69,20 @@
     html,
     body {
       margin: 0px;
-      overflow: hidden;
+      overflow: auto;
       ;
     }
+
+    a {
+    color: #ddd5ba;
+    text-decoration: none;
+}
+
+a:hover {
+    color:#ffffff;
+    text-decoration:none;
+    cursor:pointer;
+}
   </style>
 
 
@@ -96,9 +107,9 @@
 
     <div id="page-container" style="
         display: flex;
-        width: 90vw;
+        width: 100vw;
         height: 100vh;
-        margin: 0;
+        margin-top: 4em;
         border: 2px black;
 
       ">
@@ -118,14 +129,14 @@
           <div style="
 				display: flex;
 				justify-content: center;
-				background-color: rgb(77, 165, 165);
+				background-color:#28a745;
 				margin: 5px;
 				padding: 5px;
 				border: solid 2px black;
         color:white ;
         font-weight: bold;">
 
-[ <%= item.id %> ][ <%= item.name %> ]
+       <a href= '/m/<%= item.id %>'> <%= item.name %> </a>
 
           </div>
           <% } %>
@@ -142,57 +153,49 @@
 					align-content:flex-start">
 
     <% for( let item of items.foodItem ) { %>
-          <div id="article" style="
+          <div class="foodItem"
+            style="
             border: solid 5px rgb(119, 202, 126);
             padding: 10px;
             margin: 5px;
             min-width: 20%;
              max-width: 30%;
              overflow-wrap: break-word;
+             ">
 
-          ">
+              <%= item.description %>
+              [$<%= item.price/100 %>]
+              <!-- [ <%#= item.url %> ]
+              [ <%#= item.catid %> ]
+              -->
 
-           [ <%= item.description %>]  %>
-           [ <%= item.price %>]  %>
-           [ <%= item.url %>]  %>
+                <img src="<%= item.url %>" class="img-thumbnail" alt="...">
 
-          </div>
+                <button class="addItem btn btn-outline-success far fa-plus-square"
+                id="item_<%- item.id %>"
+                data-id = "<%= item.id %>"
+                data-description="<%= item.description %>"
+                data-price="<%=item.price %>"></button>
 
-          <% } %>
+                <button class="delItem btn btn-outline-danger far fa-minus-square"
+                  id="item_<%- item.id %>"
+                  data-id = "<%= item.id %>"
+                  data-description="<%= item.description %>"
+                  data-price="<%=item.price %>"></button>
+
+              </div>
+
+              <% } %>
 
         </div>
 
-        <div id="rightbar" style="max-width: 25vw; margin: 0;">
+        <div  style="max-width: 25vw; margin: 0;">
 
 
           <div style="font-weight: bold; font-size: 1.5em">my cart</div>
 
-          <table>
-            <tr>
-              <td>qty</td>
-              <td>desc</td>
-              <td>price</td>
-            </tr>
+          <div id="rightbar"></div>
 
-            <tr>
-              <td>1</td>
-              <td>pizza</td>
-              <td>$34</td>
-            </tr>
-
-            <tr>
-              <td>1</td>
-              <td>pizza</td>
-              <td>$33</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>pizza</td>
-              <td>$33</td>
-            </tr>
-
-
-          </table>
 
           <div style="
 			display: flex;
@@ -201,14 +204,13 @@
 			padding-right: 10px;
 
 			">
-            <div>subtotal: 100</div>
+            <!-- <div style = "text-align: right;">subtotal: 100</div>
             <div>hst:13</div>
-            <div>TOTAL:113</div>
+            <div style= "font-weight: bold;">TOTAL:113</div> -->
 
           </div>
         </div>
 
-        <!-- <script src="src/index.js"></script> -->
   </body>
 
 </html>

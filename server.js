@@ -70,7 +70,7 @@ const adminRoutes = require("./routes/admin");
 //menu categories / food items /  cart and order form
 //I suppose we could render a single page for SPA behaviour
 //not sure how to go about the html
-app.use("/api/menu", menuRoutes(router, db));
+app.use("/api/m", menuRoutes(router, db));
 
 //adminRoutes => owner_view (Hasan)
 //login , active orders , orders history

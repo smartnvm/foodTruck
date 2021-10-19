@@ -47,6 +47,7 @@ module.exports = (router, db) => {
 
   router.get("/orders", (req, res) => {
     const userId = req.session.user_id;
+    console.log('///////////////////////////////////////')
     const user = usersdB[userId];
 
 
@@ -80,56 +81,8 @@ module.exports = (router, db) => {
 
     //authentication success - redirect to orders
     if (user && authStatus.num === 200) {
-      let qty = 5;
-
-
-      const pushToCart = (userId,
-        orderId, itemId, desc, qty, price) => {
-        const tempCart = {
-          [userId]: {
-            userId, orderId, itemId, desc, qty, price
-          }
-        };
-        return tempCart;
-      };
-
-      //write to cookie with cart param
-      //initialize cart parameter to session
-      //the values are retreievd from sql query
-      //select id, order_number, item_description, item_order.qty
-
-            let myCart = pushToCart(null,null,null,null,null,null)
-
-      //on click
-      req.session.user_id = user.id;
-      req.session.item_id = '5';
-      req.session.order_id = '514646';
-      req.session.description = 'this is beef qorma';
-      req.session.quantity = 1;
-
-      //on add updates cart
-      userId = req.session.user_id;
-      orderId = req.session.order_id;
-      itemId = req.session.item_id;
-      desc = req.session.description;
-      qty = req.session.quantity;
-
-
-      myCart = pushToCart(
-        userId, orderId, itemId, desc, qty);
-
-      myCart['0'].qty++;
-      myCart['0'].qty++;
-      myCart['0'].qty++;
-      myCart['0'].qty++;
-      myCart['0'].qty++;
-      myCart['0'].qty++;
-      myCart['0'].qty++;
-      myCart['0'].qty--;
-
-      if (myCart['0'].qty === 0) delete myCart['0'];
-      //res.send(myCart);
-
+      req.session.user_id = user.id
+      console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',user.id)
       const templateVars = varInit(true, authStatus.num, user, null);
        res.render('menu_index', templateVars);
       return;
