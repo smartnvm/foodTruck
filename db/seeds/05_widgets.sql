@@ -5,17 +5,21 @@ INSERT INTO widgets (name, user_id) VALUES ('Bearings', 2);
 
 
 
-insert into  items ( description, price, url, category_id)
-values ('food item 1', 765, '/images/photo-1546069901-ba9599a7e63c.jpeg', 3),
-('food item 2', 1511, '/images/photo-1546069901-d5bfd2cbfb1f.jpeg', 3),
- ('food item 3', 1211, '/images/photo-1580013759032-c96505e24c1f.jpeg', 3),
- ('food item 4', 1311, '/images/photo-1625536059909-84924b9899ea.jpeg', 1),
- ('food item 5', 1321, '/images/photo-1553183733-81edd1223a95.jpeg', 2),
- ('food item 6', 1851, '/images/photo-1632935254449-e777adc9addf.jpeg', 1),
- ('food item 7', 1112, '/images/photo-1499969942143-ad2a66bc72dc.jpeg', 4),
- ('food item 8', 1654, '/images/photo-1544510806-e28d3cd4d4e6.jpeg', 1),
- ('food item 9', 1112, '/images/photo-1516714435131-44d6b64dc6a2.jpeg', 1),
- ('food item 11', 151, '/images/photo-1512152272829-e3139592d56f.jpeg', 5),
- ('food item 11', 1842, '/images/photo-1605851868183-7a4de52117fa.jpeg', 1),
- ('food item 12', 1112, '/images/photo-1546069901-ba9599a7e63c.jpeg', 1),
- ('food item 13', 1521, '/images/photo-1557748362-4e95f0de4f6f.jpeg', 1);
+insert into  items ( name, description, cal,   category_id, url, price)
+values ('food item 1', 'description for item1', 765, 3, '/images/photo-1546069901-ba9599a7e63c.jpeg', 3123),
+('food item 2', 'description for item1',1511, 3, '/images/photo-1546069901-d5bfd2cbfb1f.jpeg', 1214),
+ ('food item 3','description for item1', 1211, 3, '/images/photo-1580013759032-c96505e24c1f.jpeg', 1515),
+ ('food item 4','description for item1', 1311, 1, '/images/photo-1625536059909-84924b9899ea.jpeg', 1899),
+ ('food item 5', 'description for item1',1321, 3, '/images/photo-1553183733-81edd1223a95.jpeg', 2299),
+ ('food item 6','description for item1', 1851, 2, '/images/photo-1632935254449-e777adc9addf.jpeg', 1199),
+ ('food item 7', 'description for item1',1112, 4, '/images/photo-1499969942143-ad2a66bc72dc.jpeg', 299),
+ ('food item 8', 'description for item1',1654, 1, '/images/photo-1544510806-e28d3cd4d4e6.jpeg', 799),
+ ('food item 9','description for item1', 1112, 1, '/images/photo-1516714435131-44d6b64dc6a2.jpeg', 1199),
+ ('food item 11', 'description for item1',151, 5, '/images/photo-1512152272829-e3139592d56f.jpeg', 1799),
+ ('food item 11', 'description for item1',1842, 1, '/images/photo-1605851868183-7a4de52117fa.jpeg', 2399),
+ ('food item 12','description for item1', 1112, 1, '/images/photo-1546069901-ba9599a7e63c.jpeg', 2677),
+ ('food item 13','description for item1', 1521, 1, '/images/photo-1557748362-4e95f0de4f6f.jpeg', 799);
+
+
+INSERT INTO items (name,description,cal,category_id,url,price)
+VALUES ('mushroom soup','basic roux is thinned with cream or milk and then mushrooms and/or mushroom broth are added',39,1,'photos/mushroom.jpg',3.99);

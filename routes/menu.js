@@ -68,7 +68,8 @@ module.exports = (router, db) => {
       .then(data => {
         const categories = data.rows;
         //res.send({categories})
-        const strquery = `SELECT items.description as description,
+        const strquery = `SELECT items.name as name,
+        items.description as description,
         items.price, items.url, items.id,
           categories.name as category ,
           categories.id as catId FROM items
@@ -83,7 +84,7 @@ module.exports = (router, db) => {
       })
       .then(data => {
         const templateVars = varInit(false, 200, 'customer', data);
-        // res.send(data);
+        //res.send(data);
          res.render('cart', templateVars);
       }
 

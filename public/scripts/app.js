@@ -14,14 +14,14 @@ $(() => {
   $('.addItem').click(function () {
     const id = $(this).attr('id');
     const price = $(this).attr('data-price');
-    const desc = $(this).attr('data-description');
+    const title = $(this).attr('data-name');
 
     //let qty = Number(sessionStorage.getItem('qty'))+ 1;
 
     //initCart(0, 10001, id, desc, qty, price);
     // console.log( id, price, desc)
 
-    addItem(id, desc, price);
+    addItem(id, title, price);
 
   });
 
@@ -29,9 +29,9 @@ $(() => {
   $('.delItem').click(function () {
     const id = $(this).attr('id');
     const price = $(this).attr('data-price');
-    const desc = $(this).attr('data-description');
+    const title = $(this).attr('data-name');
 
-    delItem(id, desc, price);
+    delItem(id, title, price);
   });
 
 
@@ -39,7 +39,7 @@ $(() => {
 
 
 
-function addItem(itemId, desc, price) {
+function addItem(itemId, title, price) {
 
   let cart = {};
   if (localStorage.getItem('cart')) {
@@ -50,7 +50,7 @@ function addItem(itemId, desc, price) {
   if (!cart[itemId]) {
     cart[itemId] = {
       qty: 0,
-      desc: desc,
+      title: title,
       lineTotal: 0
     };
   }

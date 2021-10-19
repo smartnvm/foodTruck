@@ -1,9 +1,12 @@
--- categories table seeds here (Example)
-INSERT INTO users (name) VALUES ('Alice');
-INSERT INTO users (name) VALUES ('Kira');
+-- Users table seeds here (Example)
+-- INSERT INTO users (name) VALUES ('Alice');
+-- INSERT INTO users (name) VALUES ('Kira');
+-- INSERT INTO owners (name, email, password)
+--     VALUES ('Devin Sanders', 'tristanjacobs@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.');
 
-
-
+INSERT INTO users (name,phone)VALUES ('mary','647-322-5656');
+INSERT INTO users (name,phone)VALUES ('ali',4169232121);
+INSERT INTO users (name,phone)VALUES ('rose',416233211);
 INSERT INTO categories (name) VALUES ('appetizer');
 INSERT INTO categories (name) VALUES ('soup');
 INSERT INTO categories (name) VALUES ('salad');
@@ -14,19 +17,24 @@ INSERT INTO categories (name) VALUES ('deserts');
 INSERT INTO categories (name) VALUES ('drinks');
 
 
+INSERT INTO items (name,description,cal,category_id,url,price) VALUES ('mushroom soup','basic roux is thinned with cream or milk and then mushrooms and/or mushroom broth are added',39,1,'photos/mushroom.jpg',399);
+INSERT INTO items (name,description,cal,category_id,url,price) VALUES ('lentil soup','is a soup based on lentils; it may be vegetarian or include meat, and may use brown, red, yellow, green or black lentils',56,1,'images/lentil.jpg',499);
 
--- insert into  items ( description, price, url, category_id)
--- values ('food item 1', 765, 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c', 1),
--- ('food item 2', 1511, 'https://images.unsplash.com/photo-1546069901-d5bfd2cbfb1f', 1),
---  ('food item 3', 1211, 'https://images.unsplash.com/photo-1580013759032-c96505e24c1f', 1),
---  ('food item 4', 1311, 'https://images.unsplash.com/photo-1625536059909-84924b9899ea', 1),
---  ('food item 5', 1321, 'https://images.unsplash.com/photo-1553183733-81edd1223a95', 2),
---  ('food item 6', 1851, 'https://images.unsplash.com/photo-1632935254449-e777adc9addf', 1),
---  ('food item 7', 1112, 'https://images.unsplash.com/photo-1499969942143-ad2a66bc72dc', 4),
---  ('food item 8', 1654, 'https://images.unsplash.com/photo-1544510806-e28d3cd4d4e6', 1),
---  ('food item 9', 1112, 'https://images.unsplash.com/photo-1516714435131-44d6b64dc6a2', 1),
---  ('food item 11', 151, 'https://images.unsplash.com/photo-1550950158-d0d960dff51b', 5),
---  ('food item 11', 1842, 'https://images.unsplash.com/photo-1605851868183-7a4de52117fa', 1),
---  ('food item 12', 1112, 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c', 1),
---  ('food item 13', 1521, 'https://images.unsplash.com/photo-1557748362-4e95f0de4f6f', 1);
+INSERT INTO items (name,description,cal,category_id,url,price) VALUES ('caeser salad',' romaine lettuce and croutons dressed with lemon juice, olive oil, egg, Worcestershire sauce, anchovies, garlic, Dijon mustard, Parmesan cheese, and black pepper',44,1,'images/Caeser.jpg',599);
+INSERT INTO items (name,description,cal,category_id,url,price) VALUES ('Fattoush salad',' Levantine salad made from toasted or fried pieces of khubz combined with mixed greens and other vegetables, such as radishes and tomatoes',159,2,'images/fattoush.jpg',399);
+
+INSERT INTO items (name,description,cal,category_id,url,price) VALUES ('kabab',' cooked meat dish, with its origins in Middle Eastern cuisine.',144.8,3,'images/kabab.jpg',899);
+INSERT INTO items (name,description,cal,category_id,url,price) VALUES ('burger','  ground meat, typically beef—placed inside a sliced bread roll or bun.',225,3,'images/kabab.jpg',799);
+
+INSERT INTO items (name,description,cal,category_id,url,price) VALUES ('pizza',' Dough, sauce (usually tomato sauce), cheese ',309,4,'images/pizza.jpg',699);
+INSERT INTO items (name,description,cal,category_id,url,price) VALUES ('chicken scallop','fried chicken breast',343.9,4,'images/chicken.jpg',799);
+
+INSERT INTO items (name,description,cal,category_id,url,price) VALUES ('tea',' black tea ',1,5,'images/tea.jpg',299);
+INSERT INTO items (name,description,cal,category_id,url,price) VALUES ('coffee','coffee with milk ',31,5,'images/coffee.jpg',345);
+
+
+
+-- INSERT INTO orders (user_id,time,estimated_time,completed_time,complete) VALUES (2,'13:30','00:15','14:15',TRUE);
+-- INSERT INTO orders (user_id,time,estimated_time,completed_time,complete) VALUES (2,'12:30','00:30','01:01',TRUE);
+
 

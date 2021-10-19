@@ -2,22 +2,47 @@
 
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS categories CASCADE;
-drop table if exists items cascade;
+DROP TABLE IF EXISTS items CASCADE;
+DROP TABLE IF EXISTS items_orders CASCADE;
+DROP TABLE IF EXISTS orders CASCADE;
+
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL
+  name VARCHAR(255) NOT NULL,
+  phone VARCHAR(32)  NOT NULL,
+  email VARCHAR(255)
 );
-
 
 CREATE TABLE categories (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL
 );
 
-create table items (
-id serial primary key not null,
-description varchar(255),
-price integer,
-url varchar(255),
-category_id integer references categories(id));
+CREATE TABLE items (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  description TEXT,
+  cal INTEGER NOT NULL,
+  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
+  url VARCHAR(255) NOT NULL,
+  price INTEGER  NOT NULL DEFAULT 0
+
+);
+CREATE TABLE items_orders(
+  id SERIAL PRIMARY KEY NOT NULL,
+  item_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
+  order_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
+  quantity INTEGER  NOT NULL DEFAULT 0
+
+);
+CREATE TABLE orders (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
+  time  time(7)  NOT NULL,
+  estimated_time  time NOT NULL,
+  completed_time   time NOT NULL,
+  complete BOOLEAN NOT NULL DEFAULT TRUE
+
+
+);
