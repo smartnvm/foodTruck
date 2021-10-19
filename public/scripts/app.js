@@ -162,7 +162,7 @@ const renderOrders = (orders) => {
   // repopulate order-container
   for (const order of orders) {
     const $order = createOrder(order);
-    $orderContainer.append($order);
+    $orderContainer.prepend($order);
   }
 };
 
@@ -178,35 +178,5 @@ const renderMenu = (items) => {
     const $item = createItem(item);
     $menuContainer.append($item);
   }
-};
-
-
-const createItem = (tweet) => {
-
-  const $tweet = $(`
-  <article class="tweet">
-    <header>
-    <div class='profile'>
-        <img src="${tweet.user.avatars}">
-        <p>${tweet.user.name}</p>
-    </div>tweet
-        <div class ='handle'>${tweet.user.handle}</div>
-      </header>
-
-      <div class='body'>
-        <span>${escape(tweet.content.text)}</span>
-      </div>
-      <br>
-      <footer>
-        <span class class="tweetage">${timeago.format(tweet.created_at)}</span>
-        <div class="reactions">
-          <i class="fa fa-xs fa-flag"></i>
-          <i class="fa fa-xs fa-retweet"></i>
-          <i class="fa fa-xs fa-heart"></i>
-        </div>
-      </footer>
-
-    </article>`);
-  return $tweet;
-};
+}
 */
