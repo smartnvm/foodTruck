@@ -117,9 +117,8 @@ module.exports = (router, db) => {
 
 
 
-  router.get("/new", (req, res) => {
-
-    res.send('this is new order page');
+  router.get("/cart", (req, res) => {
+    res.render('menu');
     return;
     let query = `SELECT * FROM orders`;
     console.log(query);
@@ -136,6 +135,25 @@ module.exports = (router, db) => {
   });
 
 
+  router.get("/checkout", (req, res) => {
+
+    const templateVars = varInit(false, 200, 'customer', null);
+
+    res.render('checkout',templateVars);
+    return;
+    let query = `SELECT * FROM orders`;
+    console.log(query);
+    db.query(query)
+      .then(data => {
+        const orders = data.rows;
+        res.json({ orders });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
 
   router.get("/mycart", (req, res) => {
 

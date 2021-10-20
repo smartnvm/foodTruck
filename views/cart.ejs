@@ -65,6 +65,19 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> -->
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+
   <style>
     html,
     body {
@@ -74,15 +87,15 @@
     }
 
     a {
-    color: #ddd5ba;
-    text-decoration: none;
-}
+      color: #ddd5ba;
+      text-decoration: none;
+    }
 
-a:hover {
-    color:#ffffff;
-    text-decoration:none;
-    cursor:pointer;
-}
+    a:hover {
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+    }
   </style>
 
 
@@ -123,10 +136,10 @@ a:hover {
           max-width: 15vw;
           margin: 0;">
 
-<% for( let item of items.categories ) { %>
+          <% for( let item of items.categories ) { %>
 
 
-          <div style="
+            <div style="
 				display: flex;
 				justify-content: center;
 				background-color:#28a745;
@@ -136,10 +149,12 @@ a:hover {
         color:white ;
         font-weight: bold;">
 
-       <a href= '/m/<%= item.id %>'> <%= item.name %> </a>
+              <a href='/m/<%= item.id %>'>
+                <%= item.name %>
+              </a>
 
-          </div>
-          <% } %>
+            </div>
+            <% } %>
         </div>
 
 
@@ -153,9 +168,8 @@ a:hover {
 					flex-wrap: wrap;
 					align-content:flex-start">
 
-    <% for( let item of items.foodItem ) { %>
-          <div class="foodItem"
-            style="
+          <% for( let item of items.foodItem ) { %>
+            <div class="foodItem" style="
             border: solid 5px rgb(119, 202, 126);
             padding: 10px;
             margin: 5px;
@@ -164,36 +178,32 @@ a:hover {
              overflow-wrap: break-word;
              ">
 
-              <h3><%= item.title %></h3>
+              <h3>
+                <%= item.title %>
+              </h3>
               <%= item.description %>
-              <b> [$<%= item.price/100 %>] </b>
-              <!-- [ <%#= item.url %> ]
+                <b> [$<%= item.price/100 %>] </b>
+                <!-- [ <%#= item.url %> ]
               [ <%#= item.catid %> ]
               -->
 
                 <img src="<%= item.url %>" class="img-thumbnail" alt="...">
 
-                <button class="addItem btn btn-outline-success far fa-plus-square"
-                id="item_<%- item.id %>"
-                data-id = "<%= item.id %>"
-                data-title="<%= item.title %>"
-                data-desc="<%= item.description %>"
-                data-price="<%=item.price %>"></button>
+                <button class="addItem btn btn-outline-success far fa-plus-square" id="item_<%- item.id %>"
+                  data-id="<%= item.id %>" data-title="<%= item.title %>" data-desc="<%= item.description %>"
+                  data-price="<%=item.price %>"></button>
 
-                <button class="delItem btn btn-outline-danger far fa-minus-square"
-                id="item_<%- item.id %>"
-                data-id = "<%= item.id %>"
-                data-title="<%= item.title %>"
-                data-description="<%= item.description %>"
-                data-price="<%=item.price %>"></button>
+                <button class="delItem btn btn-outline-danger far fa-minus-square" id="item_<%- item.id %>"
+                  data-id="<%= item.id %>" data-title="<%= item.title %>" data-description="<%= item.description %>"
+                  data-price="<%=item.price %>"></button>
 
-              </div>
+            </div>
 
-              <% } %>
+            <% } %>
 
         </div>
 
-        <div  style="max-width: 25vw; margin: 0;">
+        <div style="max-width: 25vw; margin: 0;">
 
 
           <div style="font-weight: bold; font-size: 1.5em">My Order</div>
@@ -214,6 +224,54 @@ a:hover {
 
           </div>
         </div>
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="cartModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+
+
+                <form class="form" action="/orders/new" method="POST">
+
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-at"></i></span>
+                    </div>
+                    <input type="text" class="form-control" name="username" placeholder="john@smith.com">
+                  </div>
+
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-key"></i></span>
+                    </div>
+                    <input type="password" class="form-control" name="password" placeholder="password">
+                  </div>
+
+                  <div class="form-group">
+                    <input type="submit" value="Place Order" class="btn float-right login_btn" onclick="submitOrder()">
+                  </div>
+
+
+                </form>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
 
   </body>
 

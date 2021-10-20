@@ -16,6 +16,44 @@ const usersdB = require('../lib/admin');
 
 module.exports = (router, db) => {
 
+  router.post("/orders/new", (req, res) => {
+
+    //res.render('orders')
+    res.send(req.body)
+    // res.render('err_page', tempVar)
+
+    const msg = req.body
+    tempVar = varInit(true,200,'aj',msg)
+    db.query(`SELECT * FROM widgets;`)
+      .then(data => {
+        const users = data.rows;
+        res.send({ users });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  router.get("/orders/active", (req, res) => {
+
+    // msg = null
+    // tempVar = varInit(true,200,'aj',msg)
+    db.query(`SELECT * FROM items where category_id  = 1;`)
+      .then(data => {
+        const orders = data.rows;
+        res.send({ orders });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+
+
   router.get("/test", (req, res) => {
     db.query(`SELECT * FROM widgets;`)
       .then(data => {
@@ -60,7 +98,7 @@ module.exports = (router, db) => {
 
     //initalize template variable before passing to ejs view
     const templateVars = varInit(true, 200, user, null);
-    res.render("menu_index", templateVars);
+    res.render("orders", templateVars);
   });
 
 
