@@ -119,9 +119,21 @@ const createItem = (item) => {
   const $lineItem = $(`
       <div id="rightbar">
         ${item.qty}x \t ${item.title} \t $${item.lineTotal / 100}
+
         </div>`);
   return $lineItem;
 };
+
+ //  <span>
+      //  <i class="addItem far fa-plus-square" id="item_<%- item.id %>"
+      //   data-id="<%= item.id %>" data-title="<%= item.title %>" data-desc=" item.description "
+      //   data-price="<%=item.price %>"></i>
+
+      // <i class="delItem  far fa-minus-square" id="item_<%- item.id %>"
+      //   data-id="<%= item.id %>" data-title="<%= item.title %>" data-description="<%= item.description %>"
+      //   data-price="<%=item.price %>"></i>
+      //   </span>
+
 
 
 /*

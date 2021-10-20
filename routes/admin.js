@@ -14,20 +14,115 @@ const { varInit,
 //login users
 const usersdB = require('../lib/admin');
 
+//generate order uuid
+const { v4: uuidv4 } = require('uuid');
+
+
+
+//creates new user
+const createUser = (name, email, password) => {
+  password = bcrypt.hashSync(password, 10);
+  const userId = uuidv4().substring(0, 6);
+  user = { id: userId, name, email, password };
+  return user;
+};
+
+
+//get timestamp and return friendly format
+const getTimestamp = () => {
+  let months = ['Jan', 'Feb', 'Mar', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    now = new Date(),
+    formatted = now.getFullYear() + ' ' + months[now.getMonth() - 1] + ' ' + now.getDate() + ' ' + now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0') + ':' + now.getSeconds().toString().padStart(2, '0');
+  return formatted;
+};
+
+
+
+//find user in a database by email
+const getOrderById = (id, ordersdB) => {
+
+  if (ordersdB[id]) {
+
+    return ordersdB[id];
+  }
+
+  return false;
+};
+
+
+
+
+
 module.exports = (router, db) => {
+
+
+
+
+
 
   router.post("/orders/new", (req, res) => {
 
-    //res.render('orders')
-    res.send(req.body)
-    // res.render('err_page', tempVar)
 
-    const msg = req.body
-    tempVar = varInit(true,200,'aj',msg)
-    db.query(`SELECT * FROM widgets;`)
+    order = req.body;
+
+    params = [order.name, order.phone, order.email];
+
+    const query = `
+    INSERT INTO customers (name, phone, email)
+    VALUES ($1, $2, $3)
+    returning *;
+    `;
+
+
+    db.query(query, params)
       .then(data => {
-        const users = data.rows;
-        res.send({ users });
+        const customer = data.rows;
+        return customer;
+      })
+      .then(customer => {
+
+        //generate uuid for each click
+        const order_no = uuidv4().substring(0, 10);
+        customer_id = customer[0].id;
+
+        /*
+        customer_id INTEGER
+        order_no VARCHAR(10) NOT NULL,
+        order_time  timestamp NOT NULL,
+        order_note text,
+        estimated_time  timestamp ,
+        completed_time   timestamp ,
+          completed BOOLEAN DEFAULT FALSE
+        */
+
+        const order_time = new Date().toISOString();
+
+        console.log(order_time);
+        params = [customer_id, order_no, order_time, order.note];
+
+        const query = `
+        INSERT INTO orders (customer_id, order_no,order_time,  order_note)
+        VALUES ($1, $2, $3, $4)
+        returning *`;
+
+
+        db.query(query, params)
+          .then(data => {
+            const order = data.rows
+            console.log(order);
+
+           //NOTIFY Client with NEW order info
+
+
+          // restaurant need to indicate fultill time
+
+            res.send(order);
+          })
+          .catch(err => {
+            res
+              .status(500)
+              .json({ error: err.message });
+          });
       })
       .catch(err => {
         res
@@ -85,7 +180,7 @@ module.exports = (router, db) => {
 
   router.get("/orders", (req, res) => {
     const userId = req.session.user_id;
-    console.log('///////////////////////////////////////')
+    console.log('///////////////////////////////////////');
     const user = usersdB[userId];
 
 
@@ -119,10 +214,10 @@ module.exports = (router, db) => {
 
     //authentication success - redirect to orders
     if (user && authStatus.num === 200) {
-      req.session.user_id = user.id
-      console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',user.id)
+      req.session.user_id = user.id;
+      console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', user.id);
       const templateVars = varInit(true, authStatus.num, user, null);
-       res.render('menu_index', templateVars);
+      res.render('menu_index', templateVars);
       return;
     };
 

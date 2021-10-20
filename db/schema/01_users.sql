@@ -1,14 +1,14 @@
 -- Drop and recreate Users table (Example)
 
-DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS customers CASCADE;
+DROP TABLE IF EXISTS orders CASCADE;
 DROP TABLE IF EXISTS categories CASCADE;
 DROP TABLE IF EXISTS items CASCADE;
 DROP TABLE IF EXISTS items_orders CASCADE;
-DROP TABLE IF EXISTS orders CASCADE;
 DROP TABLE IF EXISTS widgets CASCADE;
 
 
-CREATE TABLE users (
+CREATE TABLE customers (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
   phone VARCHAR(32)  NOT NULL,
@@ -39,11 +39,11 @@ CREATE TABLE items_orders(
 );
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
-  user_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
-  time  time(7)  NOT NULL,
-  estimated_time  time NOT NULL,
-  completed_time   time NOT NULL,
-  complete BOOLEAN NOT NULL DEFAULT TRUE
-
-
+  customer_id INTEGER REFERENCES customers(id) ON DELETE CASCADE,
+  order_no VARCHAR(10) NOT NULL,
+  order_time  timestamp NOT NULL,
+  order_note text,
+  estimated_time  timestamp ,
+  completed_time   timestamp ,
+  completed BOOLEAN DEFAULT FALSE
 );
