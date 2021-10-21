@@ -1,115 +1,283 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <title>Order Details</title>
+  <title>Oder Menu</title>
 
-  <!-- I added this bootstrap css to experiment with -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <!-- Meta Information -->
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+
+
+  <link rel="stylesheet" id="bootstrap-css"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    type="text/css" />
+
+  <!-- App CSS -->
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
-  <!-- I added these 3 temporary files for styling and experimentation -->
-  <link rel="stylesheet" href="/styles/orders.css" type="text/css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" type="text/css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"></script>
+  <!-- <link rel="stylesheet" href="/styles/main.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/nav.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/header.css" type="text/css" /> -->
+
+  <link rel="stylesheet" href="/styles/style.css" type="text/css" />
 
 
-  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+
+  <!-- External JS -->
+  <!-- reference jQuery CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
+    integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+  <!-- App JS -->
+  <script type="text/javascript" src="/scripts/app.js"></script>
+
+
+  <!-- App Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap"
+    rel="stylesheet">
+
+
+
+  <!--Fontawesome CDN-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+
+  <style>
+    html,
+    body {
+      margin: 0px;
+      overflow: auto;
+      ;
+    }
+
+    a {
+      color: #ddd5ba;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+
   <script type="text/javascript" src="/scripts/orders.js"></script>
+  <link rel="stylesheet" href="/styles/orders.css" type="text/css" />
+
+
 </head>
 
-<!-- This body will hold the all the elements for the entire owner's page -->
-<body>
+<%- include('partials/_header') %>
 
-  <!-- This will be the header at the top of the page -->
-  <header class="main-header">HMA RESTAURANT</header>
+  <body>
+    <!-- <header style="
+		display: flex;
+		justify-content: start;
+		background-color: darkcyan;
+		width: 100vw;
+		padding: 10px;
+		font-size: 1.5em;
+		font-family:Arial, Helvetica, sans-serif;
+		font-weight: bold;
+		color: white">
+      &#9776 navbar
+    </header> -->
+
+    <div id="page-container" style="
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        margin-top: 4em;
+        border: 2px black;
+
+      ">
+
+      <%#- JSON.stringify(locals) %>
+
+        <div id="leftsidebar" style="
+          display: flex;
+					flex-direction: column;
+          flex-grow: 100;
+          max-width: 15vw;
+          margin: 0;">
+
+
+          <div style="
+				display: flex;
+				justify-content: center;
+				background-color:#28a745;
+				margin: 5px;
+				padding: 5px;
+				border: solid 2px black;
+        color:white ;
+        font-weight: bold;">
+
+            <a href='/orders/active'>Active Orders</a>
+
+          </div>
+
+          <div style="
+				display: flex;
+				justify-content: center;
+				background-color:#28a745;
+				margin: 5px;
+				padding: 5px;
+				border: solid 2px black;
+        color:white ;
+        font-weight: bold;">
+
+            <a href='/orders/active'>Oders History</a>
+
+          </div>
+
+          <div style="
+          display: flex;
+          justify-content: center;
+          background-color:#28a745;
+          margin: 5px;
+          padding: 5px;
+          border: solid 2px black;
+          color:white ;
+          font-weight: bold;">
+
+              <a href='/logout'>logout</a>
+
+            </div>
+
+        </div>
 
 
 
-  <!-- This div will hold both the left side navbar and the orders container -->
-  <div class="owner-page">
+
+        <div id="content" style="
+				 width: 60vw;
+				 margin: 0;
+				  display: flex;
+          justify-content: center;
+					flex-wrap: wrap;
+					align-content:flex-start">
+
+
+          <% for( order of items ) { %>
+            <div class="foodItem" style="
+            border: solid 5px rgb(119, 202, 126);
+            padding: 10px;
+            margin: 5px;
+            min-width: 90%;
+             overflow-wrap: break-word;
+             ">
 
 
 
-  <!-- This will be the left side navbar -->
-  <nav class="orders-navbar">
-    <section class="nav-buttons">
-      <button class="active-orders" type="button">ACTIVE ORDERS</button>
-      <button class="orders-history" type="button">ORDERS HISTORY</button>
-      <button class="edit-menu" type="button">EDIT MENU</button>
-      <button class="dashboard" type="button">DASHBOARD</button>
-      <button class="logout" type="button">LOGOUT</button>
-      <div ></div>
-    </section>
-  </nav>
+              <div class="owner-area">
+
+                  <section class="order-box">
+
+                    <main class="order-details">
+
+                      <div class="set-time">
+                        <button class="set-time-button"
+                        data-time = "15"
+                        >15 MIN</button>
+                        <button class="set-time-button"
+                        data-time = "30"
+                        >30 MIN</button>
+                        <button class="set-time-button"
+                        data-time = "45"
+                        >45 MIN</button>
+                      </div>
+
+                      <div class="order-details">
+                        <div class="order-number"
+                        data-order_no = "ejs expression"
+                        >Order#: ejs expression </div>
+
+                        <table class="order-items">
+                          <tr class="order-line">
+                            <td class="order-qty"> ejs qty</td>
+                            <td class="order-item">ejs title</td>
+                          </tr>
+
+                          <tr class="order-line">
+                            <td class="order-qty">1x</td>
+                            <td class="order-item">Salad</td>
+                          </tr>
+
+                          <tr class="order-line">
+                            <td class="order-qty">2x</td>
+                            <td class="order-item">Cheese Cake</td>
+                          </tr>
+                        </table>
+
+                        <div class="order-notes">Note: Add Raisins</div>
+                      </div>
+
+                      <div class="order-fulfilled">
+                        <button class="order-fulfilled-button" type="button">
+                          <i class="fa-solid fa-check"></i>
+                        </button>
+                      </div>
+
+                    </main>
+
+                    <footer class="order-time">
+                      <div class="time-ordered">12 min ago</div>
+                      <div class="time-remaining">20 min remaining</div>
+                    </footer>
 
 
-  <!-- This will be the main container for the orders -->
-
-<div class="owner-area">
-  <header class="orders-header">ACTIVE ORDERS</header>
-    <section class="orders-container">
 
 
-<!-- This whole section is dynamically created now, so not needed.
+              </div>
 
-    <section class="order-box">
 
-      <main class="order-details">
 
-      <div class="set-time">
-        <button class="set-time-button">15 MIN</button>
-        <button class="set-time-button">30 MIN</button>
-        <button class="set-time-button">45 MIN</button>
-      </div>
 
-      <div class="order-details">
-        <div class="order-number">Order#: 100123555</div>
+            </div>
 
-        <table class="order-items">
-          <tr class="order-line">
-            <td class="order-qty">2x</td>
-            <td class="order-item">Chicken Tandoori</td>
-          </tr>
+            <% } %>
 
-          <tr class="order-line">
-            <td class="order-qty">1x</td>
-            <td class="order-item">Salad</td>
-          </tr>
+        </div>
 
-          <tr class="order-line">
-            <td class="order-qty">2x</td>
-            <td class="order-item">Cheese Cake</td>
-          </tr>
-        </table>
 
-        <div class="order-notes">Note: Add Raisins</div>
-      </div>
 
-      <div class="order-fulfilled">
-        <button class="order-fulfilled-button" type="button">
-          <i class="fa-solid fa-check"></i>
-        </button>
-      </div>
 
-    </main>
 
-    <footer class="order-time">
-      <div class="time-ordered">12 min ago</div>
-      <div class="time-remaining">20 min remaining</div>
-    </footer>
-  </section> -->
 
-  </section>
-</div>
-
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-
-</body>
+  </body>
 
 </html>

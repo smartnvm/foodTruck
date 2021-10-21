@@ -22,7 +22,7 @@
     </div class="container float-right">
     <% if (user && loggedIn) { %>
       <div>
-        <form method="POST" action="/logout">
+        <form method="GET" action="/logout">
           <h2 class="navbar-brand">Hello, <%= user.name %> 🙋
           </h2>
           <button type="submit" class="btn btn-light">Logout</button>
