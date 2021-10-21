@@ -59,6 +59,36 @@ module.exports = (router, db) => {
 
 
 
+  router.post("/orders/update", (req, res) => {
+
+
+    order = req.body;
+
+    params = [order.estimated_time, order.id];
+
+    const query = `
+    UPDATE orders SET estimated_time = $1
+    WHERE orders.id = $2
+    returning *;
+    `;
+
+    db.query(query, params)
+      .then(data => {
+        const order = data.rows;
+
+        //do SMS API call
+
+        return order;
+
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+
 
   router.post("/orders/new", (req, res) => {
 
@@ -90,8 +120,8 @@ module.exports = (router, db) => {
         order_no VARCHAR(10) NOT NULL,
         order_time  timestamp NOT NULL,
         order_note text,
-        estimated_time  timestamp ,
-        completed_time   timestamp ,
+          estimated_time  timestamp ,
+          completed_time   timestamp ,
           completed BOOLEAN DEFAULT FALSE
         */
 
@@ -108,15 +138,9 @@ module.exports = (router, db) => {
 
         db.query(query, params)
           .then(data => {
-            const order = data.rows
+            const order = data.rows;
             console.log(order);
-
-           //NOTIFY Client with NEW order info
-
-
-          // restaurant need to indicate fultill time
-
-            res.send(order);
+            res.send(orders);
           })
           .catch(err => {
             res
@@ -133,12 +157,14 @@ module.exports = (router, db) => {
 
   router.get("/orders/active", (req, res) => {
 
-    // msg = null
-    // tempVar = varInit(true,200,'aj',msg)
-    db.query(`SELECT * FROM items where category_id  = 1;`)
+    db.query(`SELECT * FROM orders where completed = false;`)
       .then(data => {
         const orders = data.rows;
-        res.send({ orders });
+
+        templateVars = varInit(true, 200, 'aj', orders);
+        //res.send(templateVars)
+        res.render('orders', templateVars);
+
       })
       .catch(err => {
         res
@@ -209,6 +235,7 @@ module.exports = (router, db) => {
     const user = getUserByEmail(email, usersdB);
     console.log('user:', user);
 
+    console.log('000000000000000000000000000000000000000');
     //authenticate if matching user found
     const authStatus = authenticateUser(email, password, user);
 
@@ -217,7 +244,7 @@ module.exports = (router, db) => {
       req.session.user_id = user.id;
       console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', user.id);
       const templateVars = varInit(true, authStatus.num, user, null);
-      res.render('menu_index', templateVars);
+      res.redirect('/orders/active');
       return;
     };
 
@@ -229,7 +256,7 @@ module.exports = (router, db) => {
 
   });
 
-  router.post("/logout", (req, res) => {
+  router.get("/logout", (req, res) => {
     //clears cookie and redirect to login page
     req.session = null;
     const templateVars = varInit(false, 200, null, null);
