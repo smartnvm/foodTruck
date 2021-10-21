@@ -17,6 +17,13 @@ const usersdB = require('../lib/admin');
 //generate order uuid
 const { v4: uuidv4 } = require('uuid');
 
+// Download the helper library from https://www.twilio.com/docs/node/install
+// Find your Account SID and Auth Token at twilio.com/console
+// and set the environment variables. See http://twil.io/secure
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+//const client = require('twilio')(accountSid, authToken);
+
 
 
 //creates new user
@@ -55,6 +62,45 @@ const getOrderById = (id, ordersdB) => {
 
 module.exports = (router, db) => {
 
+  router.get("/orders/test", (req, res) => {
+
+    db.query(`SELECT * FROM orders ;`)
+      .then(data => {
+        const orders = data.rows;
+
+        templateVars = varInit(true, 200, 'aj', orders);
+        // return orders
+        // res.send(orders)
+        res.render('xorders', templateVars);
+
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+
+  });
+
+
+  router.get("/orders/fetch", (req, res) => {
+
+    db.query(`SELECT * FROM orders where completed = false;`)
+      .then(data => {
+        const orders = data.rows;
+
+        templateVars = varInit(true, 200, 'aj', orders);
+        // return orders
+        res.send(orders);
+        //  res.render('orders', templateVars);
+
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
 
 
 
@@ -63,12 +109,14 @@ module.exports = (router, db) => {
 
 
     order = req.body;
+    console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', order);
+    params = [order.estimated_time, order.order_no];
 
-    params = [order.estimated_time, order.id];
-
+    //res.render('locals',{order})
+    //return
     const query = `
     UPDATE orders SET estimated_time = $1
-    WHERE orders.id = $2
+    WHERE order_no = $2
     returning *;
     `;
 
@@ -76,9 +124,17 @@ module.exports = (router, db) => {
       .then(data => {
         const order = data.rows;
 
-        console.log(order)
+        console.log(order);
         //do SMS API call
-        res.send(order)
+        // client.messages
+        //   .create({
+        //     body: ' parsecs?',
+        //     from: '+16132618437',
+        //     to: '+16132618437'
+        //   })
+        //   .then(message => console.log(message.sid));
+
+        res.send(order);
       })
       .catch(err => {
         res
@@ -139,7 +195,15 @@ module.exports = (router, db) => {
           .then(data => {
             const order = data.rows;
             console.log(order);
-            res.send(order);
+            // res.send(order)
+            const obj = Object.assign({},  ...order, ...customer);
+            const templateVars = varInit(false, 200, null, obj);
+
+            //res.send(obj);
+
+
+            res.render('checkout', templateVars);
+
           })
           .catch(err => {
             res
@@ -156,12 +220,13 @@ module.exports = (router, db) => {
 
   router.get("/orders/active", (req, res) => {
 
-    db.query(`SELECT * FROM orders where completed = false;`)
+    db.query(`SELECT * FROM orders where completed = false; `)
       .then(data => {
         const orders = data.rows;
 
         templateVars = varInit(true, 200, 'aj', orders);
-        //res.send(templateVars)
+        // return orders
+        //res.send(orders);
         res.render('orders', templateVars);
 
       })
@@ -173,12 +238,31 @@ module.exports = (router, db) => {
   });
 
 
+  router.get("/orders/history", (req, res) => {
 
-  router.get("/test", (req, res) => {
-    db.query(`SELECT * FROM widgets;`)
+    db.query(`SELECT * FROM orders where completed = true`)
       .then(data => {
-        const users = data.rows;
-        res.json({ users });
+        const orders = data.rows;
+
+        templateVars = varInit(true, 200, 'aj', orders);
+        // return orders
+        //res.send(orders)
+        res.render('orders', templateVars);
+
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+
+  router.get("/api/o/test", (req, res) => {
+    db.query(`SELECT * FROM orders; `)
+      .then(data => {
+        const orders = data.rows;
+        res.render('locals', { orders });
       })
       .catch(err => {
         res
@@ -193,7 +277,7 @@ module.exports = (router, db) => {
     const userId = req.session.user_id;
     console.log('viewsjs router:', userId);
     if (userId && usersdB[userId]) {
-      res.redirect('/orders');
+      res.redirect('/orders/active');
       return;
     }
     //initialize template variable,
@@ -365,4 +449,4 @@ module.exports = (router, db) => {
   });
 
   return router;
-};
+};;

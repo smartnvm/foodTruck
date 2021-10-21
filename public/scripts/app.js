@@ -12,7 +12,7 @@ $(() => {
   }
 
   $('.addItem').click(function () {
-    const id = $(this).attr('id');
+    const id = $(this).attr('data-id');
     const price = $(this).attr('data-price');
     const title = $(this).attr('data-title');
     const desc = $(this).attr('data-desc');
@@ -28,7 +28,7 @@ $(() => {
 
 
   $('.delItem').click(function () {
-    const id = $(this).attr('id');
+    const id = $(this).attr('data-id');
     const price = $(this).attr('data-price');
     const title = $(this).attr('data-title');
     const desc = $(this).attr('data-desc');
@@ -51,10 +51,12 @@ function addItem(itemId, title, desc, price) {
 
   if (!cart[itemId]) {
     cart[itemId] = {
+      id: itemId,
+      price:price,
       qty: 0,
       title: title,
       desc: desc,
-      lineTotal: 0
+      lineTotal: 0,
     };
   }
 
@@ -72,7 +74,7 @@ function delItem(itemId, desc, price) {
 
   let cart = JSON.parse(localStorage.getItem('cart'));
   console.log(cart);
-  if (cart[itemId]) {
+  if (cart[itemId])  {
     if (cart[itemId].qty === 1) {
       delete cart[itemId];
       localStorage.setItem('cart', JSON.stringify(cart));
@@ -116,82 +118,24 @@ const renderItems = (items) => {
 
 const createItem = (item) => {
 
+  console.log(item)
+  const padding = `${item.title} +${item.qty} +${item.lineTotal  / 100}`.length
   const $lineItem = $(`
-      <div id="rightbar">
-        ${item.qty}x \t ${item.title} \t $${item.lineTotal / 100}
+      <div id="rightbar" style= "display:flex; justify-content:end">
+        ${item.qty}x  ${item.title} ${'.'.padStart(40 - padding,'.')}$${item.lineTotal / 100}
+
+
+
+        <i class="addItem btn btn-outline-success fa-solid fa-circle-plus" style="margin-left : 1em" id="item_${item.id}"
+        data-id="${item.id}" data-title="${item.title}" data-desc="${item.desc}"
+        data-price="${item.price}"></i>
+
+        <i class="delItem btn btn-outline-danger fa-solid fa-circle-minus" id="item_${item.id}"
+        data-id="${item.id}" data-title="${item.title}" data-desc="${item.desc}"
+        data-price="${item.price}"></i>
 
         </div>`);
   return $lineItem;
 };
 
- //  <span>
-      //  <i class="addItem far fa-plus-square" id="item_<%- item.id %>"
-      //   data-id="<%= item.id %>" data-title="<%= item.title %>" data-desc=" item.description "
-      //   data-price="<%=item.price %>"></i>
 
-      // <i class="delItem  far fa-minus-square" id="item_<%- item.id %>"
-      //   data-id="<%= item.id %>" data-title="<%= item.title %>" data-description="<%= item.description %>"
-      //   data-price="<%=item.price %>"></i>
-      //   </span>
-
-
-
-/*
-fetchData makes a GET request to server
-server pushes data from the sql query
-
-passing endpoint as a variable for code re - use
-  /api/menu
-  /api/orders
-
-*/
-/*
-const fetchData = (endpoint) => {
-console.log('fetchdata-------------,',endpoint)
-  $.ajax({
-    url: `${endpoint}`,
-    method: "GET",
-    dataType: "json",
-    success: (data) => {
-      console.log(data);
-      if (endpoint === "/api/menu") {
-        //Mays case
-        renderMenu(data);
-
-        //Hasan case
-      } else if (endpoint === '/orders')
-        renderOrders(data);
-    },
-    error: (err) => {
-      console.log(`there was an error: ${err}`);
-    }
-  });
-};
-
-
-const renderOrders = (orders) => {
-  // clear out order-container
-  const $orderContainer = $(".orders-container");
-  $orderContainer.empty();
-
-  // repopulate order-container
-  for (const order of orders) {
-    const $order = createOrder(order);
-    $orderContainer.prepend($order);
-  }
-};
-
-
-
-const renderMenu = (items) => {
-  // clear out menu-container
-  const $menuContainer = $(".menu-container");
-  $menuContainer.empty();
-
-  // repopulate menu-container
-  for (const item of items) {
-    const $item = createItem(item);
-    $menuContainer.append($item);
-  }
-}
-*/

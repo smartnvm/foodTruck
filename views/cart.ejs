@@ -101,7 +101,7 @@
 
 <%- include('partials/_header') %>
 
-  <body>
+  <body >
     <!-- <header style="
 		display: flex;
 		justify-content: start;
@@ -115,7 +115,7 @@
       &#9776 navbar
     </header> -->
 
-    <div id="page-container" style="
+    <div id="page-container content" style="
         display: flex;
         width: 100vw;
         height: 100vh;
@@ -124,14 +124,15 @@
 
       ">
 
-      <%#- JSON.stringify(locals) %>
 
-        <div id="leftsidebar" style="
+        <div id="leftsidebar bg-dark" style="
           display: flex;
 					flex-direction: column;
           flex-grow: 100;
           max-width: 15vw;
-          margin: 0;">
+          margin: 0;
+          /* background-color: #343a40; */
+          ">
 
           <% for( let item of items.categories ) { %>
 
@@ -139,16 +140,15 @@
             <div style="
 				display: flex;
 				justify-content: center;
-				background-color:#28a745;
+				/* background-color:#28a745; */
 				margin: 5px;
 				padding: 5px;
-				border: solid 2px black;
+				/* border: solid 2px black; */
         color:white ;
         font-weight: bold;">
 
-              <a href='/m/<%= item.id %>'>
-                <%= item.name %>
-              </a>
+
+      <a href='/m/<%= item.id %>' class="btn btn-outline-dark btn-block" role="button"> <%= item.name %></a>
 
             </div>
             <% } %>
@@ -158,16 +158,17 @@
 
 
         <div id="content" style="
-				 width: 60vw;
-				 margin: 0;
+				 /* width: 60vw; */
+				 padding-left: 1.5em;
 				  display: flex;
-          justify-content: center;
+          justify-content:stretch;
 					flex-wrap: wrap;
 					align-content:flex-start">
 
           <% for( let item of items.foodItem ) { %>
             <div class="foodItem" style="
-            border: solid 5px rgb(119, 202, 126);
+            border: solid 1px #343a40;
+            /* border: solid 1px rgb(119, 202, 126); */
             padding: 10px;
             margin: 5px;
             min-width: 20%;
@@ -184,15 +185,15 @@
               [ <%#= item.catid %> ]
               -->
 
-                <img src="<%= item.url %>" class="img-thumbnail" alt="...">
+               <div> <img src="<%= item.url %>" class="img-thumbnail" alt="..."></div>
 
-                <button class="addItem btn btn-outline-success far fa-plus-square" id="item_<%- item.id %>"
+                <i class="addItem btn btn-outline-success fa-solid fa-circle-plus" id="item_<%- item.id %>"
                   data-id="<%= item.id %>" data-title="<%= item.title %>" data-desc="<%= item.description %>"
-                  data-price="<%=item.price %>"></button>
+                  data-price="<%=item.price %>"></i>
 
-                <button class="delItem btn btn-outline-danger far fa-minus-square" id="item_<%- item.id %>"
+                <i class="delItem btn btn-outline-danger fa-solid fa-circle-minus" id="item_<%- item.id %>"
                   data-id="<%= item.id %>" data-title="<%= item.title %>" data-description="<%= item.description %>"
-                  data-price="<%=item.price %>"></button>
+                  data-price="<%=item.price %>"></i>
 
             </div>
 
@@ -200,7 +201,7 @@
 
         </div>
 
-        <div style="max-width: 25vw; margin: 0;">
+        <div style="min-width: 30vw; padding-right: 1.5em;">
 
 
           <div style="font-weight: bold; font-size: 1.5em">My Order</div>
@@ -248,8 +249,6 @@
                 </button>
               </div>
               <div class="modal-body">
-                ...
-
 
                 <form class="form" action="/orders/new" method="POST">
 
@@ -298,10 +297,8 @@
 
 
                     <textarea name="note" id="order-note"
-                      style = "height: auto;"
-                      placeholder="Please let us know if you have any special requests!
-                      We will do our best :D">
-                  </textarea>
+                    style = "height: auto;"
+                    placeholder="Please let us know if you have any special requests! We will do our best :D"></textarea>
                   </div>
 
                     <input type="submit" value="Place Order"
@@ -338,5 +335,6 @@
 
 
   </body>
+  <%#- include('partials/_footer') %>
 
 </html>

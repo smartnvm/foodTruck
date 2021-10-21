@@ -155,7 +155,7 @@ module.exports = (router, db) => {
       });
   });
 
-  router.get("/mycart", (req, res) => {
+  router.get("/api/m/test", (req, res) => {
 
     const id = 1;
     let query = `SELECT id, name from categories;`;

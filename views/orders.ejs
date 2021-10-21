@@ -128,55 +128,46 @@
 
       <%#- JSON.stringify(locals) %>
 
-        <div id="leftsidebar" style="
-          display: flex;
-					flex-direction: column;
-          flex-grow: 100;
-          max-width: 15vw;
-          margin: 0;">
+      <div id="leftsidebar bg-dark" style="
+      display: flex;
+      flex-direction: column;
+      flex-grow: 100;
+      max-width: 15vw;
+      margin: 0;
+      /* background-color: #343a40; */
+      ">
 
 
-          <div style="
-				display: flex;
-				justify-content: center;
-				background-color:#28a745;
-				margin: 5px;
-				padding: 5px;
-				border: solid 2px black;
-        color:white ;
-        font-weight: bold;">
+        <div style="
+    display: flex;
+    justify-content: center;
+    /* background-color:#28a745; */
+    margin: 5px;
+    padding: 5px;
+    /* border: solid 2px black; */
+    color:white ;
+    font-weight: bold;">
 
-            <a href='/orders/active'>Active Orders</a>
-
-          </div>
-
-          <div style="
-				display: flex;
-				justify-content: center;
-				background-color:#28a745;
-				margin: 5px;
-				padding: 5px;
-				border: solid 2px black;
-        color:white ;
-        font-weight: bold;">
-
-            <a href='/orders/active'>Oders History</a>
+            <a href='/orders/active' class="btn btn-outline-dark btn-block" role="button">
+              Oders History</a>
 
           </div>
 
           <div style="
           display: flex;
           justify-content: center;
-          background-color:#28a745;
+          /* background-color:#28a745; */
           margin: 5px;
           padding: 5px;
-          border: solid 2px black;
+          /* border: solid 2px black; */
           color:white ;
           font-weight: bold;">
 
-              <a href='/logout'>logout</a>
+                  <a href='/orders/history' class="btn btn-outline-dark btn-block" role="button">
+                    Orders History</a>
 
-            </div>
+                </div>
+
 
         </div>
 
@@ -193,8 +184,9 @@
 
 
           <% for( order of items ) { %>
+
             <div class="foodItem" style="
-            border: solid 5px rgb(119, 202, 126);
+            /* border: solid 0px rgb(119, 202, 126); */
             padding: 10px;
             margin: 5px;
             min-width: 90%;
@@ -203,69 +195,72 @@
 
 
 
-              <div class="owner-area">
+              <!-- <div class="owner-area"> -->
 
-                  <section class="order-box">
+              <section class="order-box">
+                <main class="order-details">
 
-                    <main class="order-details">
+                  <div class="set-time " style="display: flex;
+                    flex-direction: column;
+                    height: 100%;
+                    flex-flow: column;">
 
-                      <div class="set-time">
-                        <button class="set-time-button"
-                        data-time = "15"
-                        >15 MIN</button>
-                        <button class="set-time-button"
-                        data-time = "30"
-                        >30 MIN</button>
-                        <button class="set-time-button"
-                        data-time = "45"
-                        >45 MIN</button>
-                      </div>
-
-                      <div class="order-details">
-                        <div class="order-number"
-                        data-order_no = "ejs expression"
-                        >Order#: ejs expression </div>
-
-                        <table class="order-items">
-                          <tr class="order-line">
-                            <td class="order-qty"> ejs qty</td>
-                            <td class="order-item">ejs title</td>
-                          </tr>
-
-                          <tr class="order-line">
-                            <td class="order-qty">1x</td>
-                            <td class="order-item">Salad</td>
-                          </tr>
-
-                          <tr class="order-line">
-                            <td class="order-qty">2x</td>
-                            <td class="order-item">Cheese Cake</td>
-                          </tr>
-                        </table>
-
-                        <div class="order-notes">Note: Add Raisins</div>
-                      </div>
-
-                      <div class="order-fulfilled">
-                        <button class="order-fulfilled-button" type="button">
-                          <i class="fa-solid fa-check"></i>
-                        </button>
-                      </div>
-
-                    </main>
-
-                    <footer class="order-time">
-                      <div class="time-ordered">12 min ago</div>
-                      <div class="time-remaining">20 min remaining</div>
-                    </footer>
+                    <!-- {
+          id: 1,
+          customer_id: 1,
+          order_no: "05b9f945-1",
+          order_time: "2021-10-21T02:35:47.464Z",
+          order_note: " saasfaf ",
+          estimated_time: null,
+          completed_time: null,
+          completed: false
+          }, -->
 
 
+                    <button type="button" class="set-time-button btn btn-outline-success" data-estimated_time="15">15
+                      MIN</button>
+                    <button type="button" class="set-time-button btn btn-secondary" data-estimated_time="30">30
+                      MIN</button>
+                    <button type="button" class="set-time-button btn btn-warning" data-estimated_time="45">45
+                      MIN</button>
+                  </div>
+
+                  <div class="order-items">
+                    <div class="order-number" data-order_no="<%=   order.order_no %>" style="text-align: center;">
+                      <b>Order#: [ <%= order.order_no %>%> ]</b></div>
+
+                    <div class="order-line" data-order_no="<%=   order.order_no %>">
+                      <%= order.order_no %>
+                    </div>
+                    <div class="<%=   order.order_no %>">
+                      <%= order.order_no %>
+                    </div>
+                  </div>
+
+                  <div class="order-fulfilled">
+
+                    <button type="button" class="order-fulfilled-button btn btn-outline-success"
+                      data-completed="false"><i class="fa-solid fa-check"></i></button>
+
+                  </div>
+
+                </main>
+
+                <footer class="order-time">
+                  <div class="time-ordered" data-order_time="<%=  order.order_time %>">
+                    <%= (order.order_time) %>
+                  </div>
+                  <div class="time-remaining"><span id="time"></span> min remaining</div>
+                </footer>
 
 
-              </div>
+              </section>
 
 
 
+
+
+              <!-- </div> -->
 
             </div>
 
@@ -279,5 +274,6 @@
 
 
   </body>
+  <%#- include('partials/_footer') %>
 
 </html>
