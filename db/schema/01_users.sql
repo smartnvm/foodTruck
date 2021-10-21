@@ -43,7 +43,7 @@ CREATE TABLE orders (
   order_no VARCHAR(10) NOT NULL,
   order_time  timestamp NOT NULL,
   order_note text,
-  estimated_time  timestamp ,
-  completed_time   timestamp ,
+  estimated_time  INTEGER ,
+  completed_time   INTEGER ,
   completed BOOLEAN DEFAULT FALSE
 );

@@ -8,39 +8,30 @@ $(() => {
 
 
   $('.set-time-button').click(function () {
-    const id = $(this).attr('id');
-    const estimated_time = $(this).attr('data-time');
+    const id = 2// $(this).attr('id');
+    const estimated_time =  $(this).attr('data-time');
     //const order_time
 
+    const order = {
 
-    // notifyCustomer();
-
+      id: 2,
+      estimated_time: estimated_time
+    }
 
     // notifyCustomer([estimated_time]);
 
 
-    $.post({
+    $.ajax({
+      type: "POST",
       url: "/orders/update",
-      data: JSON.stringify(estimated_time),
+      data: order,
       dataType: "json",
-      notifyCustomer: (data) => {
+      success:  (data) => {
         console.log('THank you\n', data);
       }
     });
 
   });
-
-
-  $('.set-time-button').click(function () {
-
-
-
-    $.post("demo_test.asp", function(data, status){
-      alert("Data: " + data + "\nStatus: " + status);
-    });
-  });
-
-
 
 });
 

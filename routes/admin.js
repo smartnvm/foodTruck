@@ -76,10 +76,9 @@ module.exports = (router, db) => {
       .then(data => {
         const order = data.rows;
 
+        console.log(order)
         //do SMS API call
-
-        return order;
-
+        res.send(order)
       })
       .catch(err => {
         res
@@ -140,7 +139,7 @@ module.exports = (router, db) => {
           .then(data => {
             const order = data.rows;
             console.log(order);
-            res.send(orders);
+            res.send(order);
           })
           .catch(err => {
             res
