@@ -205,7 +205,53 @@
 					align-content:flex-start">
 
 
-          <% for( order of items ) { %>
+
+
+
+<% if (items.active) { %>
+
+
+
+  <div style="
+  width: 60vw;
+  font-size:2em;
+ font-weight: 900;
+  margin: 0;
+   display: flex;
+   justify-content: center;
+   align-content:center"> Active History </div>
+
+  <% } else { %>
+
+
+
+        <div style="
+        width: 60vw;
+        font-size:2em;
+        font-weight: 900;
+        margin: 0;
+         display: flex;
+         justify-content: center;
+         align-content:center"> Orders History </div>
+ <% } %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <% for( order of items.orders ) { %>
 
             <div class="foodItem" style="
             /* border: solid 0px rgb(119, 202, 126); */

@@ -36,9 +36,9 @@ const createUser = (name, email, password) => {
 
 
 //get timestamp and return friendly format
-const getTimestamp = () => {
+const getTimestamp = (minutes) => {
   let months = ['Jan', 'Feb', 'Mar', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    now = new Date(),
+    now = new Date (Date.now() + minutes *60*1000),
     formatted = now.getFullYear() + ' ' + months[now.getMonth() - 1] + ' ' + now.getDate() + ' ' + now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0') + ':' + now.getSeconds().toString().padStart(2, '0');
   return formatted;
 };
@@ -164,7 +164,11 @@ module.exports = (router, db) => {
 
     order = req.body;
     console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', order);
-    params = [order.estimated_time, order.order_no];
+
+    const est_time = getTimestamp(order.estimated_time)
+
+    params = [est_time, order.order_no];
+
 
     //res.render('locals',{order})
     //return
@@ -316,7 +320,7 @@ module.exports = (router, db) => {
         const userId = req.session.user_id;
         user = usersdB[userId];
 
-        templateVars = varInit(true, 200, user, orders);
+        templateVars = varInit(true, 200, user, {orders, active:true});
         // return orders
         //res.send(orders);
         res.render('orders', templateVars);
@@ -339,7 +343,7 @@ module.exports = (router, db) => {
         const userId = req.session.user_id;
         user = usersdB[userId];
 
-        templateVars = varInit(true, 200, user, orders);
+        templateVars = varInit(true, 200, user, {orders, active:false});
         // return orders
         //res.send(orders)
         res.render('orders', templateVars);
