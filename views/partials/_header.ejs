@@ -1,0 +1,50 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark"
+  style="position: fixed;
+  width: 100vw;
+  z-index: 100;
+  position:fixed">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <a class="navbar-brand" href="/login"> <b>   &#9776   <i>food</i>Truck</b></a>
+  <!-- <a class="navbar-brand" href="/admin"> <b>   &#9776   <i>food</i>Truck</b></a> -->
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <%# if (user && loggedIn) { %>
+        <!-- <a class="nav-item nav-link" href="/urls/">My URLs</a> -->
+        <!-- <a class="nav-item nav-link" href="/urls/new">Create New URL</a> -->
+        <%# } %>
+      </div>
+
+    </div class="container float-right">
+    <% if (user && loggedIn) { %>
+      <div>
+        <form method="GET" action="/logout">
+          <h2 class="navbar-brand">Hello, <%= user.name %> 🙋
+          </h2>
+          <button type="submit" class="btn btn-light">Logout</button>
+        </form>
+      </div>
+
+        <% } else { %>
+
+
+          <button type="button" class="btn btn-outline-warning"
+          data-toggle="modal"
+          data-target="#cartModal">
+            Checkout
+          </button>
+
+          <pre> </pre>
+          <form class="form-inline" action="/m" method="GET">
+            <button type="submit" class="btn btn-outline-warning">Menu</button>
+          </form>
+          <% } %>
+    </div>
+  </nav>
+   <%#-JSON.stringify(locals)   %>
+
+</header>

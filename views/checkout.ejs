@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Admin Area</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+
+</head>
+
+<%- include('partials/_header') %>
+
+  <body>
+
+
+    <br><br>
+    <br><br><br>
+    <div style= "display:flex; justify-content: center">
+    <button type="button" class="btn btn-dark " data-toggle="modal" data-target="#order-status">
+      Order Status
+    </button>
+  </div>
+      <%#- JSON.stringify(locals) %>
+
+      <!-- items: {
+        id: 31,
+        customer_id: 31,
+        order_no: "fbd154c0-0",
+        order_time: "2021-10-21T12:23:42.542Z",
+        order_note: "",
+        estimated_time: null,
+        completed_time: null,
+        completed: false,
+        name: "aj.smartnvm",
+        phone: "613-261-8437",
+        email: "aj@smartnvm.com"
+         -->
+    <!-- Modal -->
+    <div class="modal fade" id="order-status" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"> <b>Order Confirmation</b></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p> Thank you <%= items.name %> 💁! </p>
+            <p> Your order number is <b>[<%= items.order_no %>]</b> </p>
+            <p> Your order will be ready in <b>[30 min]</b> </p>
+            <p> You will receive an SMS notification once your order is ready! </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+  </body>
+  <%#- include('partials/_footer') %>
+
+</html>

@@ -1,0 +1,74 @@
+
+.tweet-button {
+  background-color: #043052;
+  color: #FFFFFF;
+}
+
+.form-ui {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: 'Bungee', cursive;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.red{
+  color: red;
+
+}
+/* .button, .counter {
+  font-family: 'San Pro', sans-serif;
+  margin-top: 35px;
+} */
+
+#tweeter-text {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.new-tweet {
+  width: 90%;
+  
+  justify-content: center;
+  align-content: center;
+  
+}
+
+/* textarea is for all textarea on the page */
+textarea {
+  border: none;
+  outline: none;
+  background-color: #f4f1ec;
+  border-bottom: 3px solid #656565;
+  width: 100%;
+  height: 40px;
+}
+
+.errmsg {
+  color: rgb(255, 0, 0);
+  border: 2px solid rgb(255, 0, 0);
+  border-radius:  5px;
+  padding: 10px 20px;
+  margin: 10px;
+  width : 90%;
+  display:flex;
+  flex-direction: column;
+  
+  }
+  
+
+  /* Responsive design for desktops */
+@media (min-width: 1024px) {
+  
+  .tweet-container {
+    top:200px;
+    width: 65vw;
+    /* height: 50vw; */
+    float: right;
+    position:relative;
+    margin-top: 20px;
+  }
+  
+}   

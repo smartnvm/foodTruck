@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+  <title>Home Page</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel ="stylesheet" href="/styles/navbar.css" type ="text/css"/>
+  <link rel ="stylesheet" href="/styles/cart.css" type ="text/css"/>
+  <link rel ="stylesheet" href="/styles/items.css" type ="text/css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+   <!-- App JS -->
+   <script type="text/javascript" src="/scripts/menu.js"></script>
+</head>
+
+<body>
+  <nav class="header">
+    <div class = "menu_icon_align">
+    <button onclick="openNav()" class ="header_icon"><i class="fas fa-bars"></i>
+    </button>
+  </div>
+    <div class="rest_title" >resturant</div>
+    <div class ="cart_div" >
+      <button type = "button" class="cart" >
+        <i class="fas fa-cart-plus"></i>
+      </button>
+    </div>
+  </nav>
+  <main class="main_conatiner">
+    <div id="myNav" class="overlay">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <div class="overlay-content">
+        <a href="#">About</a>
+        <a href="#">Categories</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+      </section>
+
+
+    <script>
+      function openNav() {
+        document.getElementById("myNav").style.width = "20%";
+      }
+
+      function closeNav() {
+        document.getElementById("myNav").style.width = "0%";
+      }
+      </script>
+    <section class ="item_container">
+      <div >
+      <img src="https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg"   class="img"/>
+      </div>
+      <div class="order_button">
+        <button type="button" id ="order">order</button>
+      </div>
+      <div id= "price">
+        <div class="cal">
+          <ul>
+
+            <il> pizza cal 70</il>
+          </ul>
+        </div>
+        <div class="cal">
+          <p class="qty_adjust">CA$ 3</p>
+          <p class="qty_adjust"><input class="qty" type="text" value="1" />
+          <a class="minus">
+            <i class="fas fa-minus"></i>
+          </a>
+          <a class="add">
+            <i class="fas fa-plus"></i>
+          </a>
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class ="item_container">
+      <div >
+      <img src="https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg"   class="img"/>
+      </div>
+      <div class="order_button">
+        <button type="button" id ="order">order</button>
+      </div>
+      <div id= "price">
+        <div class="cal">
+          <ul>
+            <il> pizza cal 70</il>
+          </ul>
+        </div>
+        <div class="cal">
+          <p class="qty_adjust">CA$ 3</p>
+          <p class="qty_adjust"><input class="qty" type="text" value="1"/>
+          <a class="minus">
+            <i class="fas fa-minus"></i>
+          </a>
+          <a class="add">
+            <i class="fas fa-plus"></i>
+          </a>
+          </p>
+        </div>
+      </div>
+    </section>
+    <div class= "container">
+      <section class ="cart_element">
+      </section>
+      <section class ="total"> </section>
+      <p>my cart</p>
+        <!-- <p class = "cart_title"> </p> -->
+
+        <table>
+        <tr class ="oreder_list">
+          <td>qtys:</td>
+          <td>disc </td>
+          <td>price</td>
+        </tr>
+        <tr>
+          <td>1</td>
+					<td>pizza</td>
+					<td>3.99</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>burger</td>
+        <td>6.99</td>
+    </tr>
+      </table>
+      <hr>
+        <p>subtotal:</p>
+        <p>hst:13</p>
+        <p>total</p>
+
+        <button  id="checkout_button" class="open">checkout</button>
+    </div>
+    <div class="popup-overlay"></div>
+    <div class="popup-content">
+      <h2>checkout</h2>
+      <ul class="model_checkout">
+        <il> username</il>
+        <il><input type="text"></il>
+        <il>phone number</il>
+        <il><input type="text"></il>
+
+
+     <il>
+     <!--popup's close button-->
+      <button id ="submit_button" class="close">submit</button>
+    </il>
+    </ul>
+  </div>
+  </div>
+
+
+</main>
+<%#- include('partials/_footer') %>
+
+</body>
+</html>

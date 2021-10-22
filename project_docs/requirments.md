@@ -22,7 +22,6 @@
 ## API
 - website updates for the client with the expected pick up time
 - restaurant receives a `notification` for new order via SMS (API call)
-  - default estimate time || user
 
 - client receives a confirmation order # with estimated time
 - client receives a notification via SMS when their order is ready

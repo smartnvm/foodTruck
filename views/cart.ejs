@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Oder Menu</title>
+
+
+  <!-- Meta Information -->
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+
+
+  <link rel="stylesheet" id="bootstrap-css"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    type="text/css" />
+
+  <!-- App CSS -->
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+
+  <!-- <link rel="stylesheet" href="/styles/main.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/nav.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/header.css" type="text/css" /> -->
+
+  <link rel="stylesheet" href="/styles/style.css" type="text/css" />
+
+
+
+  <!-- External JS -->
+  <!-- reference jQuery CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
+    integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+  <!-- App JS -->
+  <script type="text/javascript" src="/scripts/app.js"></script>
+
+
+  <!-- App Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap"
+    rel="stylesheet">
+
+
+
+  <!--Fontawesome CDN-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+
+  <style>
+    html,
+    body {
+      margin: 0px;
+      overflow: auto;
+      ;
+    }
+
+    a {
+      color: #ddd5ba;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+
+
+
+</head>
+
+<%- include('partials/_header') %>
+
+  <body >
+    <!-- <header style="
+		display: flex;
+		justify-content: start;
+		background-color: darkcyan;
+		width: 100vw;
+		padding: 10px;
+		font-size: 1.5em;
+		font-family:Arial, Helvetica, sans-serif;
+		font-weight: bold;
+		color: white">
+      &#9776 navbar
+    </header> -->
+
+    <div id="page-container content" style="
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        margin-top: 4em;
+        border: 2px black;
+
+      ">
+
+
+        <div id="leftsidebar bg-dark" style="
+          display: flex;
+					flex-direction: column;
+          flex-grow: 100;
+          max-width: 15vw;
+          margin: 0;
+          /* background-color: #343a40; */
+          ">
+
+          <% for( let item of items.categories ) { %>
+
+
+            <div style="
+				display: flex;
+				justify-content: center;
+				/* background-color:#28a745; */
+				margin: 5px;
+				padding: 5px;
+				/* border: solid 2px black; */
+        color:white ;
+        font-weight: bold;">
+
+
+      <a href='/m/<%= item.id %>' class="btn btn-outline-dark btn-block" role="button"> <%= item.name %></a>
+
+            </div>
+            <% } %>
+        </div>
+
+
+
+
+        <div id="content" style="
+				 width: 65vw;
+				 padding-left: 1.5em;
+				  display: flex;
+          justify-content:stretch;
+					flex-wrap: wrap;
+					align-content:flex-start">
+
+          <% for( let item of items.foodItem ) { %>
+            <div class="foodItem" style="
+            border: solid 1px #343a40;
+            /* border: solid 1px rgb(119, 202, 126); */
+            padding: 10px;
+            margin: 5px;
+            min-width: 20%;
+             max-width: 30%;
+             overflow-wrap: break-word;
+             ">
+
+              <h3>
+                <%= item.title %>
+              </h3>
+              <%= item.description %>
+                <b> [$<%= item.price/100 %>] </b>
+                <!-- [ <%#= item.url %> ]
+              [ <%#= item.catid %> ]
+              -->
+
+               <div> <img src="<%= item.url %>" class="img-thumbnail" alt="..."></div>
+
+                <i class="addItem btn btn-outline-success fa-solid fa-circle-plus" id="item_<%- item.id %>"
+                  data-id="<%= item.id %>" data-title="<%= item.title %>" data-desc="<%= item.description %>"
+                  data-price="<%=item.price %>"></i>
+
+                <i class="delItem btn btn-outline-danger fa-solid fa-circle-minus" id="item_<%- item.id %>"
+                  data-id="<%= item.id %>" data-title="<%= item.title %>" data-description="<%= item.description %>"
+                  data-price="<%=item.price %>"></i>
+
+            </div>
+
+            <% } %>
+
+        </div>
+
+        <div style="min-width: 25vw; padding-right: 1.5em;">
+
+
+          <div style="font-weight: bold; font-size: 1.5em">My Order</div>
+
+          <div id="rightbar"></div>
+
+
+          <div style="
+			display: flex;
+			flex-direction: column;
+			align-items: end;
+			padding-right: 10px;
+
+			">
+
+
+
+    <div id="rightbar">
+
+    </div>
+
+            <!-- <div style = "text-align: right;">subtotal: 0.00</div>
+            <div>HST (13%) 0.00</div>
+            <div style= "font-weight: bold;">TOTAL:$0.00</div> -->
+
+          </div>
+        </div>
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title" id="cartModalLabel">
+
+
+                  My Order
+
+                </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <form>
+
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="name"  placeholder="john@smith.com">
+                  </div>
+
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                    </div>
+
+                    <!-- todo -->
+                    <input type="tel" class="form-control" id="phone"
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    placeholder="123-456-7890">
+                  </div>
+
+                  <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-at"></i></span>
+                    </div>
+                    <input type="email" class="form-control" id ="email" placeholder="email">
+
+                  </div>
+
+                  <div class="form-group">
+
+
+
+
+                    <style>
+                      textarea {
+                        border: none;
+                        outline: none;
+                        background-color: #f4f1ec;
+                        border-bottom: 3px solid #656565;
+                        width: 100%;
+                        height: 40px;
+                      }
+                    </style>
+
+
+
+                    <textarea name="note" id="order-note"
+                    style = "height: auto;"
+                    placeholder="Please let us know if you have any special requests! We will do our best :D"></textarea>
+                  </div>
+
+                    <input type="button" id="placeorder" value="Place Order"
+                    class="btn float-right btn-warning"
+                    >
+
+                    <!-- data-toggle="modal"
+                    data-target="#order-status" -->
+
+                </form>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="modal fade" id="order-status" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel"> <b>Order Confirmation</b></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p> Thank you <%= items.name %> 💁! </p>
+              <p> Your order number is <b>[<%= items.order_no %>]</b> </p>
+              <p> Your order will be ready in <b>[30 min]</b> </p>
+              <p> You will receive an SMS notification once your order is ready! </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </body>
+  <%#- include('partials/_footer') %>
+
+
+</html>

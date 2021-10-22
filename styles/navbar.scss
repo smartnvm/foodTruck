@@ -1,0 +1,158 @@
+
+nav{
+  height: 120px;
+    background-color: #030611;
+    color: #e6d8d8;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column;*/
+
+}
+.menu_icon{
+  width: 35px;
+  height: 5px;
+  background-color: rgb(243, 242, 242);
+  margin: 6px 0;
+}
+.header_icon{
+  background-color: transparent;
+  background-color: transparent;
+  /* margin-top: 40px; */
+  /* margin-left: 20px; */
+  /* padding-right: 20px; */
+  /* margin-top: 40px; */
+  /* padding-right: 150px; */
+  color: white;
+}
+.rest_title{
+  justify-content: center;
+  display: flex;
+  padding-right: 250px;
+  text-align: center;
+  font-size: 25px;
+  text-shadow: 20px;
+  /* margin-top: 50px; */
+  padding-left: 250px;
+
+}
+.header{
+  align-items: center;
+    display: flex;
+}
+.cart_div{
+  margin-right: 0;
+}
+
+
+  /* .side_bar{
+  height: 66.2%;
+  width: 200px;
+  position: absolute;
+  left: 0;
+  padding-top: 40px;
+  background-color: rgb(246, 250, 251);
+  margin-top: 0;
+} */
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 15%;
+  width: 20%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #ece3e3;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 10px;
+  right: 45px;
+  font-size: 20px;
+}
+.menu_icon_align{
+  float: left;
+  padding-right: 400px;
+}
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 10px}
+  .overlay .closebtn {
+  font-size: 20px;
+  top: 15px;
+  right: 25px;
+  }
+  .rest_title{
+    justify-content: center;
+    display: flex;
+    padding-right: 250px;
+    text-align: center;
+    font-size: 25px;
+    text-shadow: 20px;
+    /* margin-top: 50px; */
+    padding-left: 50px;
+
+  }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width :1024px) {
+  .rest_title{
+    /* padding-left: 450px;
+    padding-right: 250px; */
+  };
+  .menu_icon_align{
+    float: left;
+    padding-left: 1em;
+  }
+}
+
+.popup-overlay {
+  visibility:hidden;
+
+  }
+
+  .popup-content {
+  visibility:hidden
+  ;
+  width: 350px;
+  height: 350px;
+  background-color: white;
+
+  }
+
+  .popup-overlay.active{
+    visibility:visible;
+    }
+
+    .popup-content.active {
+    visibility:visible;
+    }

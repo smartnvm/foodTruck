@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Oder Menu</title>
+
+
+  <!-- Meta Information -->
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+
+
+  <link rel="stylesheet" id="bootstrap-css"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    type="text/css" />
+
+  <!-- App CSS -->
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+
+  <!-- <link rel="stylesheet" href="/styles/main.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/layout.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/nav.css" type="text/css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/header.css" type="text/css" /> -->
+
+  <link rel="stylesheet" href="/styles/style.css" type="text/css" />
+
+
+
+  <!-- External JS -->
+  <!-- reference jQuery CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
+    integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+  <!-- App JS -->
+  <script type="text/javascript" src="/scripts/app.js"></script>
+
+
+  <!-- App Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap"
+    rel="stylesheet">
+
+
+
+  <!--Fontawesome CDN-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+
+  <style>
+    html,
+    body {
+      margin: 0px;
+      overflow: auto;
+      ;
+    }
+
+    a {
+      color: #ddd5ba;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+
+  <script type="text/javascript" src="/scripts/orders.js"></script>
+  <link rel="stylesheet" href="/styles/orders.css" type="text/css" />
+
+
+</head>
+
+<%- include('partials/_header') %>
+
+  <body>
+    <!-- <header style="
+		display: flex;
+		justify-content: start;
+		background-color: darkcyan;
+		width: 100vw;
+		padding: 10px;
+		font-size: 1.5em;
+		font-family:Arial, Helvetica, sans-serif;
+		font-weight: bold;
+		color: white">
+      &#9776 navbar
+    </header> -->
+
+    <div id="page-container" style="
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        margin-top: 4em;
+        border: 2px black;
+
+      ">
+
+      <%#- JSON.stringify(locals) %>
+
+      <div id="leftsidebar bg-dark" style="
+      display: flex;
+      flex-direction: column;
+      flex-grow: 100;
+      max-width: 15vw;
+      margin: 0;
+      /* background-color: #343a40; */
+      ">
+
+
+        <div style="
+    display: flex;
+    justify-content: center;
+    /* background-color:#28a745; */
+    margin: 5px;
+    padding: 5px;
+    /* border: solid 2px black; */
+    color:white ;
+    font-weight: bold;">
+
+            <a href='/orders/active' class="btn btn-outline-dark btn-block" role="button">
+              Oders History</a>
+
+          </div>
+
+          <div style="
+          display: flex;
+          justify-content: center;
+          /* background-color:#28a745; */
+          margin: 5px;
+          padding: 5px;
+          /* border: solid 2px black; */
+          color:white ;
+          font-weight: bold;">
+
+                  <a href='/orders/history' class="btn btn-outline-dark btn-block" role="button">
+                    Orders History</a>
+
+                </div>
+
+
+        </div>
+
+
+
+
+        <div id="content" style="
+				 width: 60vw;
+				 margin: 0;
+				  display: flex;
+          justify-content: center;
+					flex-wrap: wrap;
+					align-content:flex-start">
+
+
+          <% for( order of items ) { %>
+
+            <div class="foodItem" style="
+            /* border: solid 0px rgb(119, 202, 126); */
+            padding: 10px;
+            margin: 5px;
+            min-width: 90%;
+             overflow-wrap: break-word;
+             ">
+
+
+
+              <!-- <div class="owner-area"> -->
+
+              <section class="order-box">
+                <main class="order-details">
+
+                  <div class="set-time " style="display: flex;
+                    flex-direction: column;
+                    height: 100%;
+                    flex-flow: column;">
+
+                    <!-- {
+          id: 1,
+          customer_id: 1,
+          order_no: "05b9f945-1",
+          order_time: "2021-10-21T02:35:47.464Z",
+          order_note: " saasfaf ",
+          estimated_time: null,
+          completed_time: null,
+          completed: false
+          }, -->
+
+
+                    <button type="button" class="set-time-button btn btn-outline-success" data-estimated_time="15">15
+                      MIN</button>
+                    <button type="button" class="set-time-button btn btn-secondary" data-estimated_time="30">30
+                      MIN</button>
+                    <button type="button" class="set-time-button btn btn-warning" data-estimated_time="45">45
+                      MIN</button>
+                  </div>
+
+                  <div class="order-items">
+                    <div class="order-number" data-order_no="<%=   order.order_no %>" style="text-align: center;">
+                      <b>Order#: [ <%= order.order_no %>%> ]</b></div>
+
+                    <div class="order-line" data-order_no="<%=   order.order_no %>">
+                      <%= order.order_no %>
+                    </div>
+                    <div class="<%=   order.order_no %>">
+                      <%= order.order_no %>
+                    </div>
+                  </div>
+
+                  <div class="order-fulfilled">
+
+                    <button type="button" class="order-fulfilled-button btn btn-outline-success"
+                      data-completed="false"><i class="fa-solid fa-check"></i></button>
+
+                  </div>
+
+                </main>
+
+                <footer class="order-time">
+                  <div class="time-ordered" data-order_time="<%=  order.order_time %>">
+                    <%= (order.order_time) %>
+                  </div>
+                  <div class="time-remaining"><span id="time"></span> min remaining</div>
+                </footer>
+
+
+              </section>
+
+
+
+
+
+              <!-- </div> -->
+
+            </div>
+
+            <% } %>
+
+        </div>
+
+
+
+
+
+
+  </body>
+  <%#- include('partials/_footer') %>
+
+</html>
