@@ -102,3 +102,27 @@ app.listen(PORT, () => {
 
 
 
+
+
+
+
+
+
+// Twilio SMS API
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const twilio = require('twilio');
+
+// (accountSid, authToken);
+
+const client = new twilio(accountSid, authToken);
+
+client.messages
+  .create({
+    body: 'Hello from Node',
+    to: '+12345678901', // Text this number
+    from: '+12058469872', // From a valid Twilio number
+  })
+  .then((message) => console.log(message.sid));
+
+
