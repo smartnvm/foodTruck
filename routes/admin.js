@@ -38,7 +38,7 @@ const createUser = (name, email, password) => {
 //get timestamp and return friendly format
 const getTimestamp = (minutes) => {
   let months = ['Jan', 'Feb', 'Mar', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-    now = new Date (Date.now() + minutes *60*1000),
+    now = new Date(Date.now() + minutes * 60 * 1000),
     formatted = now.getFullYear() + ' ' + months[now.getMonth() - 1] + ' ' + now.getDate() + ' ' + now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0') + ':' + now.getSeconds().toString().padStart(2, '0');
   return formatted;
 };
@@ -147,7 +147,7 @@ module.exports = (router, db) => {
         user = usersdB[userId];
 
         templateVars = varInit(true, 200, user, order);
-        res.send(order)
+        res.send(order);
         // res.render('orders', templateVars);
       })
       .catch(err => {
@@ -165,7 +165,7 @@ module.exports = (router, db) => {
     order = req.body;
     console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', order);
 
-    const est_time = getTimestamp(order.estimated_time)
+    const est_time = getTimestamp(order.estimated_time);
 
     params = [est_time, order.order_no];
 
@@ -236,20 +236,33 @@ module.exports = (router, db) => {
         const order_no = uuidv4().substring(0, 10);
         customer_id = customer[0].id;
 
-        /*
-        customer_id INTEGER
-        order_no VARCHAR(10) NOT NULL,
-        order_time  timestamp NOT NULL,
-        order_note text,
-          estimated_time  timestamp ,
-          completed_time   timestamp ,
-          completed BOOLEAN DEFAULT FALSE
-        */
-
         // const order_time = new Date().toISOString();
-        const order_time = getTimestamp();
+        const order_time = getTimestamp(0);
+        let orderInfo = '';
+        for (const item in cart) {
+          if (item !== 'note') {
+            orderInfo = orderInfo +
+              `${cart[item].qty}x ${cart[item].title} |\n`;
+          }
+        }
 
-        params = [customer_id, order_no, order_time, cart.note];
+        orderInfo += 'Note:'+cart.note;
+
+        // orderInfo = {};
+        // for (const item in cart) {
+        //   if (item !== 'note') {
+        //     orderInfo[item] = {
+        //       qty: cart[item].qty,
+        //       title: cart[item].title,
+        //     };
+        //   }
+        //   orderInfo.note = cart.note;
+        // }
+        // console.log(JSON.stringify(orderInfo));
+
+
+        // params = [customer_id, order_no, order_time, JSON.stringify(orderInfo)];
+        params = [customer_id, order_no, order_time, orderInfo];
 
 
         const query = `
@@ -257,12 +270,14 @@ module.exports = (router, db) => {
         VALUES ($1, $2, $3, $4)
         returning *`;
 
+        console.log(params, '\n', query);
 
         //insert order info into orders table
         return db.query(query, params)
           .then(data => {
             const order = data.rows;
             console.log('customer\n', order);
+            // res.send(order)
             return order;
             // res.send(order)
             // const obj = Object.assign({},  ...order, ...customer);
@@ -274,6 +289,7 @@ module.exports = (router, db) => {
       })
       .then(order => {
 
+        // return
 
         console.log('order--------------------------', order);
 
@@ -320,7 +336,8 @@ module.exports = (router, db) => {
         const userId = req.session.user_id;
         user = usersdB[userId];
 
-        templateVars = varInit(true, 200, user, {orders, active:true});
+
+        templateVars = varInit(true, 200, user, { orders, active: true });
         // return orders
         //res.send(orders);
         res.render('orders', templateVars);
@@ -343,7 +360,7 @@ module.exports = (router, db) => {
         const userId = req.session.user_id;
         user = usersdB[userId];
 
-        templateVars = varInit(true, 200, user, {orders, active:false});
+        templateVars = varInit(true, 200, user, { orders, active: false });
         // return orders
         //res.send(orders)
         res.render('orders', templateVars);

@@ -84,7 +84,7 @@ const autoReload = function () {
     // location.replace('http://localhost:8080')
     window.location.reload(true);
 
-  }, 30000);
+  }, 5000);
 };
 
 // autoReload();
@@ -188,7 +188,7 @@ const formatOrderTime = function (order) {
 
     <div class="time-remaining"><span id="time"></span>
 
-    ${timeago.format(order.estimated_time-Date.now())}
+
     </div>
 
     `);
@@ -198,3 +198,4 @@ const formatOrderTime = function (order) {
 
 };
 
+// ${timeago.format(order.estimated_time-Date.now())}

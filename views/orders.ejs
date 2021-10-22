@@ -304,11 +304,20 @@
                       <b>Order#: [ <%= order.id%>%> ]</b></div>
 
                     <div class="order-line" data-order_no="<%=   order.order_no %>">
-                      <%= order.order_no %>
+
+                    <%#- JSON.parse(order.order_note ) %>
+
+                    <%  list = (order.order_note).split("|")  %>
+
+                    <% for( const item of list  ) { %>
+
+                       <div> <%= item %>    </div>
+
+                    <% } %>
+
+
                     </div>
-                    <div class="<%=   order.order_no %>">
-                      <%= order.order_no %>
-                    </div>
+
                   </div>
 
                   <div class="order-fulfilled">
