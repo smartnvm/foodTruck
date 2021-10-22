@@ -38,7 +38,8 @@ $(() => {
 
   });
 
-   fetchOrders();
+  fetchOrders();
+  autoReload();
 });
 
 
@@ -83,7 +84,7 @@ const autoReload = function () {
     // location.replace('http://localhost:8080')
     window.location.reload(true);
 
-  }, 3000);
+  }, 30000);
 };
 
 // autoReload();
@@ -178,14 +179,17 @@ const formatOrderTime = function (order) {
   const $orderTime = $('.order-time');
   $orderTime.empty();
 
-
+  console.log(order.order_time, 'asfdasfd', order.estimated_time)
   const $msg = $(`
 
     <div class="time-ordered">
         ${timeago.format(order.order_time)}
     </div>
 
-    <div class="time-remaining"><span id="time"></span>${timeago.format(order.completed_time)}</div>
+    <div class="time-remaining"><span id="time"></span>
+
+    ${timeago.format(order.estimated_time-Date.now())}
+    </div>
 
     `);
 

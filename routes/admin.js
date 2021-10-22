@@ -118,7 +118,7 @@ module.exports = (router, db) => {
 
     order = req.body;
     console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', order);
-    params = [ getTimestamp(),order.order_no];
+    params = [getTimestamp(0), order.order_no];
 
     //res.render('locals',{order})
     //return
