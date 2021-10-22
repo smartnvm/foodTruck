@@ -150,7 +150,11 @@ module.exports = (router, db) => {
 
     order = req.body;
 
-    params = [order.name, order.phone, order.email];
+    const { user, cart } = order;
+
+    //res.send(order);
+
+    params = [user.name, user.phone, user.email];
 
     const query = `
     INSERT INTO customers (name, phone, email)
@@ -159,12 +163,16 @@ module.exports = (router, db) => {
     `;
 
 
+    //insert customer info into customer table
     db.query(query, params)
       .then(data => {
         const customer = data.rows;
+        console.log('customer\n', customer);
         return customer;
+
       })
       .then(customer => {
+
 
         //generate uuid for each click
         const order_no = uuidv4().substring(0, 10);
@@ -182,8 +190,9 @@ module.exports = (router, db) => {
 
         const order_time = new Date().toISOString();
 
-        console.log(order_time);
-        params = [customer_id, order_no, order_time, order.note];
+
+        params = [customer_id, order_no, order_time, cart.note];
+
 
         const query = `
         INSERT INTO orders (customer_id, order_no,order_time,  order_note)
@@ -191,27 +200,59 @@ module.exports = (router, db) => {
         returning *`;
 
 
-        db.query(query, params)
+        //insert order info into orders table
+        return db.query(query, params)
           .then(data => {
             const order = data.rows;
-            console.log(order);
+            console.log('customer\n', order);
+            return order;
             // res.send(order)
-            const obj = Object.assign({},  ...order, ...customer);
-            const templateVars = varInit(false, 200, null, obj);
-
+            // const obj = Object.assign({},  ...order, ...customer);
+            // const templateVars = varInit(false, 200, null, obj);
             //res.send(obj);
+            // res.render('checkout', templateVars);
 
-
-            res.render('checkout', templateVars);
-
-          })
-          .catch(err => {
-            res
-              .status(500)
-              .json({ error: err.message });
           });
       })
-      .catch(err => {
+      .then(order => {
+
+
+        console.log('order--------------------------', order);
+
+        //insert into item_order table with QTY and item ID and orderID
+
+        let query = 'INSERT INTO items_orders (order_id, item_id, quantity) \n values';
+        for (const lineItem in cart) {
+          if (lineItem !== 'note') {
+            console.log('________________[lineItem]______________________');
+            params = [order[0].id, lineItem, cart[lineItem].qty];
+
+
+            query = query + '(' + params.join(",") + "),\n";
+
+          };
+
+        }
+        query = query.slice(0, query.length - 1);
+
+        query = query + 'returning *;';
+
+        console.log(query);
+        return;
+        return db.query(query)
+          .then(data => {
+            const orderInfo = data.rows;
+            console.log(orderInfo);
+            return orderInfo;
+            // res.send(order)
+            // const obj = Object.assign({},  ...order, ...customer);
+            // const templateVars = varInit(false, 200, null, obj);
+            //res.send(obj);
+            // res.render('checkout', templateVars);
+
+          });
+
+      }).catch(err => {
         res
           .status(500)
           .json({ error: err.message });

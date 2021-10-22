@@ -158,7 +158,7 @@
 
 
         <div id="content" style="
-				 /* width: 60vw; */
+				 width: 65vw;
 				 padding-left: 1.5em;
 				  display: flex;
           justify-content:stretch;
@@ -201,7 +201,7 @@
 
         </div>
 
-        <div style="min-width: 30vw; padding-right: 1.5em;">
+        <div style="min-width: 25vw; padding-right: 1.5em;">
 
 
           <div style="font-weight: bold; font-size: 1.5em">My Order</div>
@@ -250,13 +250,13 @@
               </div>
               <div class="modal-body">
 
-                <form class="form" action="/orders/new" method="POST">
+                <form>
 
                   <div class="input-group form-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" name="name" placeholder="john@smith.com">
+                    <input type="text" class="form-control" id="name"  placeholder="john@smith.com">
                   </div>
 
                   <div class="input-group form-group">
@@ -265,7 +265,7 @@
                     </div>
 
                     <!-- todo -->
-                    <input type="tel" class="form-control" name="phone"
+                    <input type="tel" class="form-control" id="phone"
                     pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                     placeholder="123-456-7890">
                   </div>
@@ -274,7 +274,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-at"></i></span>
                     </div>
-                    <input type="email" class="form-control" name="email" placeholder="email">
+                    <input type="email" class="form-control" id ="email" placeholder="email">
 
                   </div>
 
@@ -301,12 +301,12 @@
                     placeholder="Please let us know if you have any special requests! We will do our best :D"></textarea>
                   </div>
 
-                    <input type="submit" value="Place Order"
+                    <input type="button" id="placeorder" value="Place Order"
                     class="btn float-right btn-warning"
-                    data-toggle="modal"
-                    data-target="#order-status"
                     >
 
+                    <!-- data-toggle="modal"
+                    data-target="#order-status" -->
 
                 </form>
 

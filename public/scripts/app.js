@@ -22,7 +22,7 @@ $(() => {
     //initCart(0, 10001, id, desc, qty, price);
     // console.log( id,title, price, desc)
 
-    addItem(id, title, desc,price);
+    addItem(id, title, desc, price);
 
   });
 
@@ -37,8 +37,44 @@ $(() => {
   });
 
 
+  $('#placeorder').click(function () {
+
+    console.log('click me')
+
+
+    cart = JSON.parse(localStorage.getItem('cart'));
+    const note = $('#order-note').val()
+    cart.note = note;
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    user = {
+      name: $('#name').val(),
+      phone: $('#phone').val(),
+      email: $('#email').val(),
+    }
+    notifyCustomer({cart, user})
+  })
+
+
+
+
 });
 
+
+notifyCustomer = (data) => {
+  console.log(data);
+
+  $.ajax({
+    type: "POST",
+    url: "/orders/new",
+    data: data,
+    dataType: "json",
+    success: (data) => {
+      console.log('xxxxxxxxxxxxupdated time', data);
+    }
+  });
+};
 
 
 function addItem(itemId, title, desc, price) {
@@ -52,7 +88,7 @@ function addItem(itemId, title, desc, price) {
   if (!cart[itemId]) {
     cart[itemId] = {
       id: itemId,
-      price:price,
+      price: price,
       qty: 0,
       title: title,
       desc: desc,
@@ -74,7 +110,7 @@ function delItem(itemId, desc, price) {
 
   let cart = JSON.parse(localStorage.getItem('cart'));
   console.log(cart);
-  if (cart[itemId])  {
+  if (cart[itemId]) {
     if (cart[itemId].qty === 1) {
       delete cart[itemId];
       localStorage.setItem('cart', JSON.stringify(cart));
@@ -118,11 +154,11 @@ const renderItems = (items) => {
 
 const createItem = (item) => {
 
-  console.log(item)
-  const padding = `${item.title} +${item.qty} +${item.lineTotal  / 100}`.length
+  console.log(item);
+  const padding = `${item.title} +${item.qty} +${item.lineTotal / 100}`.length;
   const $lineItem = $(`
       <div id="rightbar" style= "display:flex; justify-content:end">
-        ${item.qty}x  ${item.title} ${'.'.padStart(40 - padding,'.')}$${item.lineTotal / 100}
+        ${item.qty}x  ${item.title} ${'.'.padStart(40 - padding, '.')}$${item.lineTotal / 100}
 
 
 
