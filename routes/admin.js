@@ -68,7 +68,11 @@ module.exports = (router, db) => {
       .then(data => {
         const orders = data.rows;
 
-        templateVars = varInit(true, 200, 'aj', orders);
+
+        const userId = req.session.user_id;
+        user = usersdB[userId];
+
+        templateVars = varInit(true, 200, user, orders);
         // return orders
         // res.send(orders)
         res.render('xorders', templateVars);
@@ -85,11 +89,15 @@ module.exports = (router, db) => {
 
   router.get("/orders/fetch", (req, res) => {
 
-    db.query(`SELECT * FROM orders where completed = false;`)
+    db.query(`SELECT * FROM orders ;`)
       .then(data => {
         const orders = data.rows;
 
-        templateVars = varInit(true, 200, 'aj', orders);
+
+        const userId = req.session.user_id;
+        user = usersdB[userId];
+
+        templateVars = varInit(true, 200, user, orders);
         // return orders
         res.send(orders);
         //  res.render('orders', templateVars);
@@ -102,6 +110,52 @@ module.exports = (router, db) => {
       });
   });
 
+
+
+
+  router.post("/orders/complete", (req, res) => {
+
+
+    order = req.body;
+    console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', order);
+    params = [ getTimestamp(),order.order_no];
+
+    //res.render('locals',{order})
+    //return
+    const query = `
+    UPDATE orders SET completed = true, completed_time = $1
+    WHERE order_no = $2
+    returning *;
+    `;
+
+    db.query(query, params)
+      .then(data => {
+        const order = data.rows;
+
+        //do SMS API call
+        // client.messages
+        //   .create({
+        //     body: ' parsecs?',
+        //     from: '+16132618437',
+        //     to: '+16132618437'
+        //   })
+        //   .then(message => console.log(message.sid));
+
+
+        console.log(order);
+        const userId = req.session.user_id;
+        user = usersdB[userId];
+
+        templateVars = varInit(true, 200, user, order);
+        res.send(order)
+        // res.render('orders', templateVars);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
 
 
 
@@ -188,8 +242,8 @@ module.exports = (router, db) => {
           completed BOOLEAN DEFAULT FALSE
         */
 
-        const order_time = new Date().toISOString();
-
+        // const order_time = new Date().toISOString();
+        const order_time = getTimestamp();
 
         params = [customer_id, order_no, order_time, cart.note];
 
@@ -243,7 +297,7 @@ module.exports = (router, db) => {
           .then(data => {
             const orderInfo = data.rows;
             console.log(orderInfo);
-            res.send(orderInfo)
+            res.send(order);
           });
 
       }).catch(err => {
@@ -255,11 +309,14 @@ module.exports = (router, db) => {
 
   router.get("/orders/active", (req, res) => {
 
-    db.query(`SELECT * FROM orders where completed = false; `)
+    db.query(`SELECT * FROM orders where completed = false
+    Order by order_time desc; `)
       .then(data => {
         const orders = data.rows;
+        const userId = req.session.user_id;
+        user = usersdB[userId];
 
-        templateVars = varInit(true, 200, 'aj', orders);
+        templateVars = varInit(true, 200, user, orders);
         // return orders
         //res.send(orders);
         res.render('orders', templateVars);
@@ -279,7 +336,10 @@ module.exports = (router, db) => {
       .then(data => {
         const orders = data.rows;
 
-        templateVars = varInit(true, 200, 'aj', orders);
+        const userId = req.session.user_id;
+        user = usersdB[userId];
+
+        templateVars = varInit(true, 200, user, orders);
         // return orders
         //res.send(orders)
         res.render('orders', templateVars);

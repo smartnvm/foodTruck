@@ -5,6 +5,7 @@
 
 
 $(() => {
+  // timeago.render(document.querySelectorAll('.time-ordered'));
 
   console.log('orders.js script ejs ');
   $('.set-time-button').click(function () {
@@ -18,18 +19,31 @@ $(() => {
       id, order_no, order_time, estimated_time,
     };
 
-    console.log(order)
+    console.log(order);
     notifyCustomer(order);
 
-
+    // autoReload()
 
   });
 
+
+
+  $('.order-fulfilled-button').click(function () {
+    const order_no = $(this).attr('data-ordernum');
+    console.log('click completed', order_no);
+    // console.log(this)
+
+    orderComplete(order_no);
+    // autoReload()
+
+  });
+
+   fetchOrders();
 });
 
 
 notifyCustomer = (data) => {
-  console.log(data);
+  //console.log(data);
 
   $.ajax({
     type: "POST",
@@ -37,13 +51,42 @@ notifyCustomer = (data) => {
     data: data,
     dataType: "json",
     success: (data) => {
-      console.log('xxxxxxxxxxxxupdated time', data);
+      console.log('Fullfil time', data);
     }
   });
 };
 
 // ${ timeago.format(tweet.created_at); }
 
+
+const orderComplete = function (data) {
+
+  $.ajax({
+    type: "POST",
+    url: "/orders/complete",
+    data: { order_no: data },
+    dataType: "json",
+    success: (data) => {
+      console.log('.........', data);
+    }
+  });
+
+};
+
+
+
+
+const autoReload = function () {
+
+  setInterval(() => {
+    // location.replace('http://localhost:8080/orders/active')
+    // location.replace('http://localhost:8080')
+    window.location.reload(true);
+
+  }, 3000);
+};
+
+// autoReload();
 
 const createOrder = function (order) {
   const $order = $(`
@@ -97,8 +140,57 @@ const createOrder = function (order) {
   </div>
 
 
-
     `);
 
   return $order;
 };
+
+
+// making a get request to see tweets
+const fetchOrders = function() {
+  $.ajax({
+    url: "/orders/fetch",
+    method: "GET",
+    dataType: "json",
+    success: (data) => {
+      console.log('----------------------------------');
+      console.log(data);
+      generateOrders(data);
+    },
+    error: (err) => {
+      console.log(`there was an error: ${err}`);
+    }
+  });
+};
+
+const generateOrders = function(orders) {
+   // repopulate order-container
+  for (const order of orders) {
+    console.log('dataxxxxxxxxxxxxxxxxxxxxxxxxxxx:', order);
+    formatOrderTime(order);
+  }
+};
+
+
+const formatOrderTime = function (order) {
+
+
+  const $orderTime = $('.order-time');
+  $orderTime.empty();
+
+
+  const $msg = $(`
+
+    <div class="time-ordered">
+        ${timeago.format(order.order_time)}
+    </div>
+
+    <div class="time-remaining"><span id="time"></span>${timeago.format(order.completed_time)}</div>
+
+    `);
+
+  $orderTime.append($msg);
+
+
+};
+

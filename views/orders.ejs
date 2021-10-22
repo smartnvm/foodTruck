@@ -132,9 +132,12 @@
       display: flex;
       flex-direction: column;
       flex-grow: 100;
-      max-width: 15vw;
+      min-width: 150px;
+      max-width: 250px;
       margin: 0;
       /* background-color: #343a40; */
+      background-color: #343a40;
+      flex-wrap: wrap;
       ">
 
 
@@ -142,14 +145,16 @@
     display: flex;
     justify-content: center;
     /* background-color:#28a745; */
+    background-color: #343a40;
     margin: 5px;
     padding: 5px;
     /* border: solid 2px black; */
     color:white ;
-    font-weight: bold;">
+    font-weight: bold;
+    ">
 
-            <a href='/orders/active' class="btn btn-outline-dark btn-block" role="button">
-              Oders History</a>
+            <a href='/orders/active' class="btn btn-block btn-dark" role="button">
+              Active Orders </a>
 
           </div>
 
@@ -160,10 +165,11 @@
           margin: 5px;
           padding: 5px;
           /* border: solid 2px black; */
+          background-color: #343a40;
           color:white ;
           font-weight: bold;">
 
-                  <a href='/orders/history' class="btn btn-outline-dark btn-block" role="button">
+                  <a href='/orders/history' class="btn btn-block btn-dark" role="button">
                     Orders History</a>
 
                 </div>
@@ -217,17 +223,23 @@
           }, -->
 
 
-                    <button type="button" class="set-time-button btn btn-outline-success" data-estimated_time="15">15
+                    <button type="button" class="set-time-button btn btn-outline-dark"
+                    data-order_no="<%=   order.order_no %>"
+                    data-estimated_time="15">15
                       MIN</button>
-                    <button type="button" class="set-time-button btn btn-secondary" data-estimated_time="30">30
+                    <button type="button" class="set-time-button btn btn-outline-dark"
+                    data-order_no="<%=   order.order_no %>"
+                    data-estimated_time="30">30
                       MIN</button>
-                    <button type="button" class="set-time-button btn btn-warning" data-estimated_time="45">45
+                    <button type="button" class="set-time-button btn btn-outline-dark"
+                    data-order_no="<%=   order.order_no %>"
+                    data-estimated_time="45">45
                       MIN</button>
                   </div>
 
                   <div class="order-items">
                     <div class="order-number" data-order_no="<%=   order.order_no %>" style="text-align: center;">
-                      <b>Order#: [ <%= order.order_no %>%> ]</b></div>
+                      <b>Order#: [ <%= order.id%>%> ]</b></div>
 
                     <div class="order-line" data-order_no="<%=   order.order_no %>">
                       <%= order.order_no %>
@@ -240,7 +252,8 @@
                   <div class="order-fulfilled">
 
                     <button type="button" class="order-fulfilled-button btn btn-outline-success"
-                      data-completed="false"><i class="fa-solid fa-check"></i></button>
+                    data-orderNum= <%= order.order_no %>
+                    data-completed="false"><i class="fa-solid fa-check"></i></button>
 
                   </div>
 

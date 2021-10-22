@@ -4,6 +4,8 @@
 
 
 
+
+
 $(() => {
 
   if (localStorage.getItem('cart')) {
@@ -53,12 +55,8 @@ $(() => {
       phone: $('#phone').val(),
       email: $('#email').val(),
     };
+    $('#cartModal').modal('toggle');
     notifyCustomer({ cart, user });
-
-    $('#cartModal').modal('toggle');
-    $('#cartModal').modal('toggle');
-    $('#order-status').modal('toggle');
-
 
   });
 
@@ -70,7 +68,7 @@ $(() => {
 
 
 notifyCustomer = (data) => {
-  console.log(data);
+  const { user, cart } = data;
 
   $.ajax({
     type: "POST",
@@ -79,7 +77,19 @@ notifyCustomer = (data) => {
     dataType: "json",
     success: (data) => {
       console.log('reset cart', data);
+      console.log(data);
+
+      //reset local storage cart
       localStorage.setItem('cart', JSON.stringify({}));
+      console.log(user.name, `[${data[0].order_no}]`, cart);
+      confirmOrder(user.name, data[0].order_no);
+
+
+      setTimeout(() => {
+        $('#order-status').modal('toggle');
+        renderItems({});
+
+      }, 50);
 
     }
   });
@@ -121,7 +131,7 @@ function addItem(itemId, title, desc, price) {
 function delItem(itemId, desc, price) {
 
   let cart = JSON.parse(localStorage.getItem('cart'));
-  console.log(cart);
+  // console.log(cart);
   if (cart[itemId]) {
     if (cart[itemId].qty === 1) {
       delete cart[itemId];
@@ -142,17 +152,19 @@ function delItem(itemId, desc, price) {
 
 
 
-const renderItems = (items) => {
+const renderItems = (cart) => {
   // clear out blog-container
   const $cartContainer = $("#rightbar");
   $cartContainer.empty();
   let subtotal = 0;
 
   // repopulate blog-container
-  for (const item in items) {
-    const $item = createItem(items[item]);
-    $cartContainer.append($item);
-    subtotal += Number(items[item].lineTotal);
+  for (const item in cart) {
+    if (item !== 'note') {
+      const $item = createItem(cart[item]);
+      $cartContainer.append($item);
+      subtotal += Number(cart[item].lineTotal);
+    }
   }
   subtotal = subtotal / 100;
   const $total = $(`
@@ -167,18 +179,45 @@ const renderItems = (items) => {
 
 const createItem = (item) => {
 
-  console.log(item);
+  // console.log(item);
   const padding = `${item.title} +${item.qty} +${item.lineTotal / 100}`.length;
   const $lineItem = $(`
       <div id="rightbar" style= "display:flex; justify-content:end">
         ${item.qty}x  ${item.title} ${'.'.padStart(40 - padding, '.')}$${item.lineTotal / 100}
-
-
-
-
         </div>`);
   return $lineItem;
 };
+
+
+
+const confirmOrder = (name, orderNo) => {
+
+  const $orderStatus = $('#modal-body');
+  $orderStatus.empty();
+
+
+
+  const $msg = $(`
+    <div class="modal-body id="modal-body">
+        <p> Thank you  ${name} 💁! </p>
+        <p> Your order number is <b>${orderNo}</b> </p>
+        <p> Your order will be ready in <b>[30 min]</b> </p>
+        <p> You will receive an SMS notification once your order is ready! </p>
+    </div>
+  `);
+
+  $orderStatus.append($msg);
+
+
+};
+
+
+
+
+
+
+
+
 
 
   // <i class="addItem btn btn-outline-success fa-solid fa-circle-plus" style="margin-left : 1em" id="item_${item.id}"
