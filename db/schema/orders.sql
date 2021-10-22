@@ -5,5 +5,5 @@ CREATE TABLE orders (
   time  Date  NOT NULL,
   estimated_time  time NOT NULL,
   completed_time   time NOT NULL,
-  complete BOOLEAN NOT NULL DEFAULT TRUE,
+  complete BOOLEAN NOT NULL DEFAULT TRUE
 );

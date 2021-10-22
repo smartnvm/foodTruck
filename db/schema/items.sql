@@ -4,8 +4,8 @@ CREATE TABLE items (
   name VARCHAR(255) NOT NULL,
   description TEXT,
   category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
-  image_url VARCHAR(255) NOT NULL,
+  url VARCHAR(255) NOT NULL,
   price INTEGER  NOT NULL DEFAULT 0,
-  cal INSERT
+  cal INTEGER
 
 );

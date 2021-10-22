@@ -3,6 +3,6 @@ CREATE TABLE items_orders(
   id SERIAL PRIMARY KEY NOT NULL,
   item_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
   order_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
-  quantity INTEGER  NOT NULL DEFAULT 0,
+  quantity INTEGER  NOT NULL DEFAULT 0
 
 );
