@@ -233,12 +233,12 @@ module.exports = (router, db) => {
           };
 
         }
-        query = query.slice(0, query.length - 1);
+        query = query.slice(0, query.length - 2);
+        // console.log(query)
 
-        query = query + 'returning *;';
+        query = query + '\nreturning *;';
+        // console.log(query)
 
-        console.log(query);
-        return;
         return db.query(query)
           .then(data => {
             const orderInfo = data.rows;

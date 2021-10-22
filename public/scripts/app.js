@@ -162,16 +162,16 @@ const createItem = (item) => {
 
 
 
-        <i class="addItem btn btn-outline-success fa-solid fa-circle-plus" style="margin-left : 1em" id="item_${item.id}"
-        data-id="${item.id}" data-title="${item.title}" data-desc="${item.desc}"
-        data-price="${item.price}"></i>
-
-        <i class="delItem btn btn-outline-danger fa-solid fa-circle-minus" id="item_${item.id}"
-        data-id="${item.id}" data-title="${item.title}" data-desc="${item.desc}"
-        data-price="${item.price}"></i>
 
         </div>`);
   return $lineItem;
 };
 
 
+  // <i class="addItem btn btn-outline-success fa-solid fa-circle-plus" style="margin-left : 1em" id="item_${item.id}"
+        // data-id="${item.id}" data-title="${item.title}" data-desc="${item.desc}"
+        // data-price="${item.price}"></i>
+
+        // <i class="delItem btn btn-outline-danger fa-solid fa-circle-minus" id="item_${item.id}"
+        // data-id="${item.id}" data-title="${item.title}" data-desc="${item.desc}"
+        // data-price="${item.price}"></i>
