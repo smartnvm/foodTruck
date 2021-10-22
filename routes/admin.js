@@ -243,13 +243,7 @@ module.exports = (router, db) => {
           .then(data => {
             const orderInfo = data.rows;
             console.log(orderInfo);
-            return orderInfo;
-            // res.send(order)
-            // const obj = Object.assign({},  ...order, ...customer);
-            // const templateVars = varInit(false, 200, null, obj);
-            //res.send(obj);
-            // res.render('checkout', templateVars);
-
+            res.send(orderInfo)
           });
 
       }).catch(err => {

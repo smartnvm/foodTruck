@@ -39,11 +39,11 @@ $(() => {
 
   $('#placeorder').click(function () {
 
-    console.log('click me')
+    console.log('click me');
 
 
     cart = JSON.parse(localStorage.getItem('cart'));
-    const note = $('#order-note').val()
+    const note = $('#order-note').val();
     cart.note = note;
 
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -52,9 +52,16 @@ $(() => {
       name: $('#name').val(),
       phone: $('#phone').val(),
       email: $('#email').val(),
-    }
-    notifyCustomer({cart, user})
-  })
+    };
+    notifyCustomer({ cart, user });
+
+    $('#cartModal').modal('toggle');
+    $('#cartModal').modal('toggle');
+    $('#order-status').modal('toggle');
+
+
+  });
+
 
 
 
@@ -71,7 +78,9 @@ notifyCustomer = (data) => {
     data: data,
     dataType: "json",
     success: (data) => {
-      console.log('xxxxxxxxxxxxupdated time', data);
+      console.log('reset cart', data);
+      localStorage.setItem('cart', JSON.stringify({}));
+
     }
   });
 };
@@ -101,6 +110,9 @@ function addItem(itemId, title, desc, price) {
 
   localStorage.setItem('cart', JSON.stringify(cart));
   renderItems(cart);
+
+
+
 }
 
 
@@ -122,6 +134,7 @@ function delItem(itemId, desc, price) {
     cart[itemId].lineTotal = cart[itemId].qty * Number(price);
     localStorage.setItem('cart', JSON.stringify(cart));
     renderItems(cart);
+
   }
 
 }
