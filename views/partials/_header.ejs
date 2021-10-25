@@ -3,21 +3,19 @@
   style="position: fixed;
   width: 100vw;
   z-index: 100;
-  position:fixed">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  position:fixed;
+  background-color: black;">
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" -->
+    <!-- aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"> -->
+    <!-- <span class="navbar-toggler-icon"></span> -->
+    </button>
 
-  <a class="navbar-brand" href="/login"> <b>   &#9776   <i>food</i>Truck</b></a>
-  <!-- <a class="navbar-brand" href="/admin"> <b>   &#9776   <i>food</i>Truck</b></a> -->
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <%# if (user && loggedIn) { %>
-        <!-- <a class="nav-item nav-link" href="/urls/">My URLs</a> -->
-        <!-- <a class="nav-item nav-link" href="/urls/new">Create New URL</a> -->
-        <%# } %>
-      </div>
+    <!-- <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span> -->
+
+    <span style="color:white; font-size:30px;cursor:pointer" onclick="openNav()"><b> &#9776 <i>food</i>Truck</b> </span>
+    <!-- <a class="navbar-brand" href="/login"> <b>   &#9776   <i>food</i>Truck</b></a> -->
+    <!-- <a class="navbar-brand" href="/admin"> <b>   &#9776   <i>food</i>Truck</b></a> -->
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 
     </div class="container float-right">
     <% if (user && loggedIn) { %>
@@ -29,22 +27,124 @@
         </form>
       </div>
 
-        <% } else { %>
+      <% } else { %>
+        <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#cartModal">
+          Checkout
+        </button>
+        <pre> </pre>
+        <form class="form-inline" action="/m" method="GET">
+          <button type="submit" class="btn btn-outline-warning">Menu</button>
+        </form>
+        <% } %>
 
-
-          <button type="button" class="btn btn-outline-warning"
-          data-toggle="modal"
-          data-target="#cartModal">
-            Checkout
-          </button>
-
-          <pre> </pre>
-          <form class="form-inline" action="/m" method="GET">
-            <button type="submit" class="btn btn-outline-warning">Menu</button>
-          </form>
-          <% } %>
-    </div>
+      </div>
   </nav>
-   <%#-JSON.stringify(locals)   %>
+  <%#-JSON.stringify(locals) %>
 
 </header>
+
+
+<style>
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .9);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+  @media screen and (max-height: 450px) {
+    .sidenav {
+      padding-top: 15px;
+    }
+
+    .sidenav a {
+      font-size: 18px;
+    }
+  }
+
+  #overlay {
+  position: fixed; /* Sit on top of the page content */
+  /* display: none;  Hidden by default  */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 1; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+</style>
+
+
+
+
+
+
+
+
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Contact</a>
+  <a href="/login">Admin Login</a>
+</div>
+<script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+
+  }
+
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+
+
+
+/* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+// function openNav() {
+//   document.getElementById("mySidenav").style.width = "250px";
+//   document.getElementById("main").style.marginLeft = "250px";
+//   document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+// }
+
+// /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+// function closeNav() {
+//   document.getElementById("mySidenav").style.width = "0";
+//   document.getElementById("main").style.marginLeft = "0";
+//   document.body.style.backgroundColor = "white";
+// }
+
+
+
+</script>

@@ -18,10 +18,10 @@ CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
   customer_id INTEGER REFERENCES customers(id) ON DELETE CASCADE,
   order_no VARCHAR(10) NOT NULL,
-  order_time  timestamp NOT NULL,
+  order_time  TIMESTAMPTZ NOT NULL,
   order_note text,
-  estimated_time  INTEGER ,
-  completed_time   INTEGER ,
+  estimated_time  TIMESTAMPTZ,
+  completed_time   TIMESTAMPTZ,
   completed BOOLEAN DEFAULT FALSE
 );
 

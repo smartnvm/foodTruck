@@ -12,7 +12,7 @@ $(() => {
   console.log('we are inside xorders.js');
   // fetchOrders();
 
-
+  fetchOrders();
   $('.set-time-button').click(function () {
     console.log('wtf click');
     const id = 2;// $(this).attr('id');
@@ -33,7 +33,9 @@ $(() => {
       data: order,
       dataType: "json",
       success: (data) => {
+        console.log(data    )
         notifyCustomer(data);
+
 
       }
     });
@@ -144,7 +146,7 @@ const createOrder = function (order) {
         </main>
 
         <footer class="order-time">
-          <div class="time-ordered">${timeago.format(order.order_time)}</div>
+          <div class="time-ordered">${order.order_time}</div>
           <div class="time-remaining"><span id="time"></span> ${order.completed}min remaining</div>
         </footer>
 
